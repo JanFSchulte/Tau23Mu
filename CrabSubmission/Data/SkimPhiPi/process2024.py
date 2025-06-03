@@ -61,14 +61,14 @@ config.General.transferLogs = False
 config.JobType.pluginName = 'Analysis'
 
 
-config.JobType.psetName = '/afs/cern.ch/user/b/bsimon/CMSSW_14_0_18/src/SkimTools/SkimPhiPi/test/run_Data2024_DsPhiPiSkimAndTree_cfg.py'
+config.JobType.psetName = '/home/schul105/depot/Tau3Mu/analysis/2024/CMSSW_14_0_18/src/SkimTools/SkimPhiPi/test/run_Data2024_DsPhiPiSkimAndTree_cfg.py'
 
 config.Data.inputDataset = '/ParkingDoubleMuonLowMass{stream}/Run2024{era}-PromptReco-{version}/MINIAOD'
 config.Data.inputDBS = 'global'
 config.Data.splitting = 'LumiBased'
 #config.Data.splitting = 'Automatic'
 config.Data.unitsPerJob = 50
-config.Data.lumiMask = '/eos/user/c/cmsdqm/www/CAF/certification/Collisions24/Cert_Collisions2024_378981_386951_Golden.json'
+config.Data.lumiMask = 'Cert_Collisions2024_378981_386951_Golden.json'
 #config.Data.runRange = '193093-193999' # '193093-194075'
 config.Data.publication = True
 config.Data.outputDatasetTag = 'SkimPhiPi_2024era{era}_{version}_stream{stream}_Mini_v1'
@@ -81,7 +81,7 @@ config.Site.ignoreGlobalBlacklist  = True
 
 for portion in portions:
 
-    for i in range(0,1):
+    for i in range(1,8):
 
         args = {}
         args["version"] = versions[portion]

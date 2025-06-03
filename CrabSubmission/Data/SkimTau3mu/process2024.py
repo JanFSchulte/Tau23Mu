@@ -60,7 +60,7 @@ config.General.transferLogs = False
 config.JobType.pluginName = 'Analysis'
 
 
-config.JobType.psetName = '/depot/cms/users/simon73/Run3Tau3Mu_3/CMSSW_14_0_18/src/SkimTools/SkimTau3Mu/test/run_Data2024_PatAndTree_cfg.py'
+config.JobType.psetName = '/depot/cms/users/schul105/Tau3Mu/analysis/2024/CMSSW_14_0_18/src/SkimTools/SkimTau3Mu/test/run_Data2024_PatAndTree_cfg.py'
 
 config.Data.inputDataset = '/ParkingDoubleMuonLowMass{stream}/Run2024{era}-PromptReco-{version}/MINIAOD'
 config.Data.inputDBS = 'global'

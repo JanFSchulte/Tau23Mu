@@ -36,12 +36,13 @@ elif args.dataset == 'data_phimunu':
    temp = '_'+args.anatype
    option_string = ' "'+args.dataset+temp.replace("_phimunu","")+'" "'+args.run+'"'
 elif args.dataset == 'MC':
+   args.run = "MC"
    out_filename = 'AnalysedTree_'+args.dataset+'_'+args.MCprocess+'_'+args.anatype
    temp = '_'+args.anatype
-   option_string = ' "'+args.dataset+temp.replace("_tau3mu","")+'" "'+args.MCprocess+'"'
+   option_string = ' "'+args.dataset+'" "'+args.MCprocess+'"'
 
 #startTime = datetime.datetime.now().strftime("%Y%m%d_%H%M")
-
+print (option_string)
 # Create target Directory if don't exist
 if args.dataset == 'MC':
    output_name = args.MCprocess+"_"+args.anatype+"_"+args.outName
@@ -243,13 +244,148 @@ if args.anatype == 'tau3mu':
    if args.dataset == 'data' and args.run == '2023D-v2_3':
       path = '/store/user/jschulte/ParkingDoubleMuonLowMass3/SkimDsTau3mu_2022eraD_v2_stream3_Mini_v1/240909_135929'
    if args.dataset == 'data' and args.run == '2023D-v2_4':
-      path = '/store/user/jschulte/ParkingDoubleMuonLowMass4/SkimDsTau3mu_2022eraD_v2_stream4_Mini_v1/240911_132214'
+      path =  '/store/user/jschulte/ParkingDoubleMuonLowMass4/SkimDsTau3mu_2022eraD_v2_stream4_Mini_v1/240911_132214'
    if args.dataset == 'data' and args.run == '2023D-v2_5':
       path = '/store/user/jschulte/ParkingDoubleMuonLowMass5/SkimDsTau3mu_2022eraD_v2_stream5_Mini_v1/240909_140002'
    if args.dataset == 'data' and args.run == '2023D-v2_6':
       path = '/store/user/jschulte/ParkingDoubleMuonLowMass6/SkimDsTau3mu_2022eraD_v2_stream6_Mini_v1/240909_140011'
    if args.dataset == 'data' and args.run == '2023D-v2_7':
       path = '/store/user/jschulte/ParkingDoubleMuonLowMass7/SkimDsTau3mu_2022eraD_v2_stream7_Mini_v1/240909_140025'
+
+   
+   if args.dataset == 'data' and args.run == '2024D-v1_0':
+      path = get_path(0, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_1':
+      path = get_path(1, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_2':
+      path = get_path(2, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_3':
+      path = get_path(3, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_4':
+      path = get_path(4, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_5':
+      path = get_path(5, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_6':
+      path = get_path(6, 'D', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024D-v1_7':
+      path = get_path(7, 'D', '1',phipi=False)
+
+   if args.dataset == 'data' and args.run == '2024E-v1_0':
+      path = get_path(0, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_1':
+      path = get_path(1, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_2':
+      path = get_path(2, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_3':
+      path = get_path(3, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_4':
+      path = get_path(4, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_5':
+      path = get_path(5, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_6':
+      path = get_path(6, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v1_7':
+      path = get_path(7, 'E', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_0':
+      path = get_path(0, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_1':
+      path = get_path(1, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_2':
+      path = get_path(2, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_3':
+      path = get_path(3, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_4':
+      path = get_path(4, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_5':
+      path = get_path(5, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_6':
+      path = get_path(6, 'E', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024E-v2_7':
+      path = get_path(7, 'E', '2',phipi=False)
+
+   if args.dataset == 'data' and args.run == '2024F-v1_0':
+      path = get_path(0, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_1':
+      path = get_path(1, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_2':
+      path = get_path(2, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_3':
+      path = get_path(3, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_4':
+      path = get_path(4, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_5':
+      path = get_path(5, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_6':
+      path = get_path(6, 'F', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024F-v1_7':
+      path = get_path(7, 'F', '1',phipi=False)
+
+   if args.dataset == 'data' and args.run == '2024G-v1_0':
+      path = get_path(0, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_1':
+      path = get_path(1, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_2':
+      path = get_path(2, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_3':
+      path = get_path(3, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_4':
+      path = get_path(4, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_5':
+      path = get_path(5, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_6':
+      path = get_path(6, 'G', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024G-v1_7':
+      path = get_path(7, 'G', '1',phipi=False)
+
+   if args.dataset == 'data' and args.run == '2024H-v1_0':
+      path = get_path(0, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_1':
+      path = get_path(1, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_2':
+      path = get_path(2, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_3':
+      path = get_path(3, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_4':
+      path = get_path(4, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_5':
+      path = get_path(5, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_6':
+      path = get_path(6, 'H', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024H-v1_7':
+      path = get_path(7, 'H', '1',phipi=False)
+
+   if args.dataset == 'data' and args.run == '2024I-v1_0':
+      path = get_path(0, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_1':
+      path = get_path(1, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_2':
+      path = get_path(2, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_3':
+      path = get_path(3, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_4':
+      path = get_path(4, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_5':
+      path = get_path(5, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_6':
+      path = get_path(6, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v1_7':
+      path = get_path(7, 'I', '1',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_0':
+      path = get_path(0, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_1':
+      path = get_path(1, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_2':
+      path = get_path(2, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_3':
+      path = get_path(3, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_4':
+      path = get_path(4, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_5':
+      path = get_path(5, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_6':
+      path = get_path(6, 'I', '2',phipi=False)
+   if args.dataset == 'data' and args.run == '2024I-v2_7':
+      path = get_path(7, 'I', '2',phipi=False)
 
 
 
@@ -700,7 +836,7 @@ if args.dataset == 'MC' and args.MCprocess == 'DsPhiMuNu':
         elif args.year == "2023BPix":    
             path = '/store/user/jschulte/DstoPhiMuNu_Phito2Mu_MuFilter_TuneCP5_13p6TeV_pythia8-evtgen/SkimTau3mu_MCRun3_DsPhiMuNu_Miniv4_2023BPix_NewSamples_v1/241023_144017/'
         elif args.year == "2024":
-            path = '/store/user/bsimon/DstoPhiMuNu-Phito2Mu_Fil-Mu_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiMuNu_MCRun3_2024/250407_172728/'
+            path = '/store/user/jschulte/DstoPhiMuNu-Phito2Mu_Fil-Mu_TuneCP5_13p6TeV_pythia8-evtgen/SkimTau3mu_2024_MCRun3_DsPhiMuNu/250513_130344/'
 if args.dataset == 'MC' and args.MCprocess == 'DsPhiPi':
     if args.year == "2022": 
         path = '/store/user/jschulte/DstoPhiPi_Phito2Mu_MuFilter_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiPi_MCRun3_2022/241002_193241'
@@ -709,7 +845,7 @@ if args.dataset == 'MC' and args.MCprocess == 'DsPhiPi':
     elif args.year == "2023":    
         path = '/store/user/jschulte/DstoPhiPi_Phito2Mu_MuFilter_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiPi_MCRun3_2023/241002_193902/'
     elif args.year == '2024':
-        path = '/store/user/bsimon/DstoPhiPi-Phito2Mu_Fil-Mu_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiPi_MCRun3_2024/250407_172148'
+        path = '/store/user/jschulte/DstoPhiPi-Phito2Mu_Fil-Mu_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiPi_MCRun3_2024_v2/250508_132433/'
     else:    
         path = '/store/user/jschulte/DstoPhiPi_Phito2Mu_MuFilter_TuneCP5_13p6TeV_pythia8-evtgen/SkimPhiPi_MCRun3_2023BPix/241002_194239/'
 
@@ -750,7 +886,7 @@ for file_index in range(n_chunk+1):
       #analysis.cpp template
       with open("templates/Analysis_template.cpp", "r") as in_file:
           buf = in_file.readlines()
-
+      print (args.dataset, args.run, args.MCprocess, args.anatype, file_index)
       cpp_filename = "Analysis_"+args.dataset+"_"+args.run+args.MCprocess+"_"+args.anatype+"_chunk"+str(file_index)+".cpp"
       with open(cpp_filename, "w") as out_file:
           for lb in buf:

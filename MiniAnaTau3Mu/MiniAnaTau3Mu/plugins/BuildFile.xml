@@ -9,8 +9,7 @@
 <use name="TrackingTools/IPTools"/>
 <use name="L1Trigger/L1TGlobal/"/> 
 <use name="DataFormats/Common/"/>
-<use name="DataFormats/HLTReco/i"/>
-<use name="CondFormats/DataRecord/"/>
+<use name="DataFormats/HLTReco/"/>
 <use name="CondFormats/L1TObjects"/>
 <use name="DataFormats/TrackReco"/>
 <use name="RecoVertex/KalmanVertexFit"/>

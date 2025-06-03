@@ -276,9 +276,8 @@ private:
     std::vector<int> NGoodTriplets;
     uint  evt, run, lumi, puN;
     std::vector<string>  Trigger_l1name;
-    std::vector<int> Trigger_l1decision;
-    std::vector<int> Trigger_l1prescale;
-    
+    std::vector<int> Trigger_l1Initialdecision, Trigger_l1Finaldecision;
+    std::vector<double> Trigger_l1prescale;    
     std::vector<string>  Trigger_hltname;
     std::vector<int> Trigger_hltdecision;
     
@@ -563,6 +562,8 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
     gtUtil_->retrieveL1(iEvent, iSetup, algTok_);
     //theL1TUtmTriggerMenu_->retrieveL1(iEvent, iSetup, algToken_);
     const vector<pair<string, bool> > initialDecisions = gtUtil_->decisionsInitial();
+    const vector<pair<string, bool> > finalDecisions = gtUtil_->decisionsFinal();
+    const vector<pair<string, double> > PSValues = gtUtil_->prescales();    
     //const vector<pair<string, bool> > initialDecisions = theL1TUtmTriggerMenu_->decisionsInitial();
     cout << "Fill trigger Var" << endl;
     if (!iEvent.isRealData()) {
@@ -570,7 +571,8 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
             string l1tName = (initialDecisions.at(i_l1t)).first;
             if(l1tName.find("DoubleMu") != string::npos || l1tName.find("TripleMu") != string::npos ||  l1tName.find("SingleMu")!= string::npos){
                 Trigger_l1name.push_back( l1tName );
-                Trigger_l1decision.push_back( initialDecisions.at(i_l1t).second );
+                Trigger_l1Initialdecision.push_back( initialDecisions.at(i_l1t).second );
+                Trigger_l1Finaldecision.push_back( finalDecisions.at(i_l1t).second );
                 Trigger_l1prescale.push_back( 1 );
             }
         }
@@ -585,8 +587,9 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
             if(l1tName.find("DoubleMu") != string::npos || l1tName.find("TripleMu") != string::npos ||  l1tName.find("SingleMu")!= string::npos){
                 //cout<<"L1Seed="<<l1tName<<" decision="<<initialDecisions.at(i_l1t).second<<" prescale="<<(psAndVetos->prescale_table_)[columnN][i_l1t]<<endl;
                 Trigger_l1name.push_back( l1tName );
-                Trigger_l1decision.push_back( initialDecisions.at(i_l1t).second );
-                //Trigger_l1prescale.push_back( (psAndVetos->prescale_table_)[columnN][i_l1t]);
+                Trigger_l1Initialdecision.push_back( initialDecisions.at(i_l1t).second );
+                Trigger_l1Finaldecision.push_back( finalDecisions.at(i_l1t).second );
+                Trigger_l1prescale.push_back( PSValues.at(i_l1t).second );		
             }
         }
     }
@@ -2156,8 +2159,10 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
     Tr_dRtriggerMatch.clear();
     
     Trigger_l1name.clear();
-    Trigger_l1decision.clear();
+    Trigger_l1Initialdecision.clear();
+    Trigger_l1Finaldecision.clear();
     Trigger_l1prescale.clear();
+
 
     Trigger_hltname.clear();
     Trigger_hltdecision.clear();
@@ -2329,9 +2334,9 @@ void DsPhiPiTreeMakerMINI::beginJob() {
     tree_->Branch("nPileUpInt", &puN);
     
     tree_->Branch("Trigger_l1name", &Trigger_l1name);
-    tree_->Branch("Trigger_l1decision",&Trigger_l1decision);
-    tree_->Branch("Trigger_l1prescale",&Trigger_l1prescale);
-    
+    tree_->Branch("Trigger_l1Initialdecision",&Trigger_l1Initialdecision);
+    tree_->Branch("Trigger_l1Finaldecision",&Trigger_l1Finaldecision);
+    tree_->Branch("Trigger_l1prescale",&Trigger_l1prescale);    
     tree_->Branch("Trigger_hltname",&Trigger_hltname);
     tree_->Branch("Trigger_hltdecision",&Trigger_hltdecision);
     
