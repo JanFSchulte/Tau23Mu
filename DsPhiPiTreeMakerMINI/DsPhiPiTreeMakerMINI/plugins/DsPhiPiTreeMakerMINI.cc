@@ -561,14 +561,14 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
 
     gtUtil_->retrieveL1(iEvent, iSetup, algTok_);
     //theL1TUtmTriggerMenu_->retrieveL1(iEvent, iSetup, algToken_);
-    const vector<pair<string, bool> > initialDecisions = gtUtil_->decisionsInitial();
-    const vector<pair<string, bool> > finalDecisions = gtUtil_->decisionsFinal();
-    const vector<pair<string, double> > PSValues = gtUtil_->prescales();    
+    const auto initialDecisions = gtUtil_->decisionsInitial();
+    const auto finalDecisions = gtUtil_->decisionsFinal();
+    const auto PSValues = gtUtil_->prescales();    
     //const vector<pair<string, bool> > initialDecisions = theL1TUtmTriggerMenu_->decisionsInitial();
     cout << "Fill trigger Var" << endl;
     if (!iEvent.isRealData()) {
         for (size_t i_l1t = 0; i_l1t < initialDecisions.size(); i_l1t++) {
-            string l1tName = (initialDecisions.at(i_l1t)).first;
+            string l1tName = std::string((initialDecisions.at(i_l1t)).first);
             if(l1tName.find("DoubleMu") != string::npos || l1tName.find("TripleMu") != string::npos ||  l1tName.find("SingleMu")!= string::npos){
                 Trigger_l1name.push_back( l1tName );
                 Trigger_l1Initialdecision.push_back( initialDecisions.at(i_l1t).second );
@@ -583,7 +583,7 @@ DsPhiPiTreeMakerMINI::analyze(const edm::Event& iEvent, const edm::EventSetup& i
         //int columnN= gtUtil_->prescaleColumn();
         //int columnN= theL1TUtmTriggerMenu_->prescaleColumn();
         for (size_t i_l1t = 0; i_l1t < initialDecisions.size(); i_l1t++) {
-        string l1tName = (initialDecisions.at(i_l1t)).first;
+        string l1tName = std::string((initialDecisions.at(i_l1t)).first);
             if(l1tName.find("DoubleMu") != string::npos || l1tName.find("TripleMu") != string::npos ||  l1tName.find("SingleMu")!= string::npos){
                 //cout<<"L1Seed="<<l1tName<<" decision="<<initialDecisions.at(i_l1t).second<<" prescale="<<(psAndVetos->prescale_table_)[columnN][i_l1t]<<endl;
                 Trigger_l1name.push_back( l1tName );
