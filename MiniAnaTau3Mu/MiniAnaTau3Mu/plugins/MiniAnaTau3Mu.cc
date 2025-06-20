@@ -140,7 +140,14 @@ public:
     //float dRtriggerMatch(pat::Muon m, trigger::TriggerObjectCollection triggerObjects);
     float dRtriggerMatch(pat::Muon m, vector<pat::TriggerObjectStandAlone> triggerObjects);
     void beginRun(edm::Run const &, edm::EventSetup const&, edm::Event const&);
-    
+    typedef std::pair<const reco::MuonChamberMatch*, const reco::MuonSegmentMatch*> MatchPair;
+    const MatchPair& getBetterMatch(const MatchPair&, const MatchPair&) const;
+    float dX(const MatchPair&) const;
+    float pullX(const MatchPair&) const;
+    float pullDxDz(const MatchPair&) const;
+    float dY(const MatchPair&) const;
+    float pullY(const MatchPair&) const;
+    float pullDyDz(const MatchPair&) const;    
     
 private:
     virtual void beginJob() override;
@@ -277,7 +284,7 @@ private:
     std::vector<double> MuonPt_HLT_DiMu_Incl, MuonEta_HLT_DiMu_Incl, MuonPhi_HLT_DiMu_Incl;
     std::vector<double> MuonPt_HLT_DiMu_Incl_displ, MuonEta_HLT_DiMu_Incl_displ, MuonPhi_HLT_DiMu_Incl_displ;
 
-    std::vector<double>  Muon_innerTrack_highPurity,  Muon_innerTrack_ValidFraction, Muon_Numberofvalidtrackerhits, Muon_validMuonHitComb, Muon_IP2D_BS,  Muon_IP3D_BS,  Muon_IP2D_PV,  Muon_IP3D_PV, Muon_SoftMVA_Val;
+    std::vector<double>  Muon_innerTrack_nLostHitsInner, Muon_innerTrack_nLostHitsOuter, Muon_innerTrack_nPixels, Muon_innerTrack_nValidHits, Muon_innerTrack_nLostHitsOn, Muon_innerTrack_highPurity,  Muon_innerTrack_ValidFraction, Muon_Numberofvalidtrackerhits, Muon_validMuonHitComb, Muon_IP2D_BS,  Muon_IP3D_BS,  Muon_IP2D_PV,  Muon_IP3D_PV, Muon_SoftMVA_Val;
     std::vector<double>  DistXY_PVSV,  DistXY_significance_PVSV;
     std::vector<double>  Triplet_IsoMu1, Triplet_IsoMu2, Triplet_IsoMu3;
     std::vector<double>  FlightDistBS_SV,  FlightDistBS_SV_Err,  FlightDistBS_SV_Significance;
@@ -285,6 +292,9 @@ private:
     std::vector<double>  Mu1_IsGlobal, Mu2_IsGlobal, Mu3_IsGlobal, Mu1_IsPF, Mu2_IsPF, Mu3_IsPF;
     
     std::vector<double> L1Muon_Pt, L1Muon_Eta, L1Muon_Phi, L1Muon_EtaAtVtx, L1Muon_PhiAtVtx, L1Muon_BX, L1Muon_Quality, L1Muon_Charge, L1Muon_ChargeValid, L1Muon_TfMuonIndex, L1Muon_dPhi, L1Muon_dEta, L1Muon_rank, L1Muon_isoSum;
+
+    std::vector<double> Muon_combinedQuality_match1_dX, Muon_combinedQuality_match1_pullX, Muon_combinedQuality_match1_pullDxDz, Muon_combinedQuality_match1_dY, Muon_combinedQuality_match1_pullY, Muon_combinedQuality_match1_pullDyDz;
+    std::vector<double> Muon_combinedQuality_match2_dX, Muon_combinedQuality_match2_pullX, Muon_combinedQuality_match2_pullDxDz, Muon_combinedQuality_match2_dY, Muon_combinedQuality_match2_pullY, Muon_combinedQuality_match2_pullDyDz;
 
     //SyncTree
     /*  
@@ -368,7 +378,68 @@ bool isGoodTrack(const reco::Track &track) {
     }
     return false;
 }
-    
+
+typedef std::pair<const reco::MuonChamberMatch*, const reco::MuonSegmentMatch*> MatchPair;
+const MatchPair& MiniAnaTau3Mu::getBetterMatch(const MatchPair& match1, const MatchPair& match2) const{
+
+  if (match2.first->detector() == MuonSubdetId::DT and
+      match1.first->detector() != MuonSubdetId::DT)
+    return match2;
+
+  if ( abs(match1.first->x - match1.second->x) >
+       abs(match2.first->x - match2.second->x) )
+    return match2;
+
+  return match1;
+}
+
+
+float MiniAnaTau3Mu::dX(const MatchPair& match) const{
+  if (match.first and match.second->hasPhi())
+    return (match.first->x - match.second->x);
+  else
+    return 9999.;
+}
+
+float MiniAnaTau3Mu::pullX(const MatchPair& match) const{
+  if (match.first and match.second->hasPhi())
+    return dX(match) /
+      sqrt(pow(match.first->xErr, 2) + pow(match.second->xErr, 2));
+  else
+    return 9999.;
+}
+ 
+float MiniAnaTau3Mu::pullDxDz(const MatchPair& match) const{
+  if (match.first and match.second->hasPhi())
+    return (match.first->dXdZ - match.second->dXdZ) /
+           sqrt(pow(match.first->dXdZErr, 2) + pow(match.second->dXdZErr, 2));
+  else
+    return 9999.;
+}
+
+float MiniAnaTau3Mu::dY(const MatchPair& match) const{
+  if (match.first and match.second->hasZed())
+    return (match.first->y - match.second->y);
+  else
+    return 9999.;
+}
+
+float MiniAnaTau3Mu::pullY(const MatchPair& match) const{
+  if (match.first and match.second->hasZed())
+    return dY(match) /
+      sqrt(pow(match.first->yErr, 2) + pow(match.second->yErr, 2));
+  else
+    return 9999.;
+}
+
+float MiniAnaTau3Mu::pullDyDz(const MatchPair& match) const{
+  if (match.first and match.second->hasZed())
+    return (match.first->dYdZ - match.second->dYdZ) /
+           sqrt(pow(match.first->dYdZErr, 2) + pow(match.second->dYdZErr, 2));
+  else
+    return 9999.;
+}
+
 typedef std::map<const reco::Track*, reco::TransientTrack> TransientTrackMap;
 // auxiliary function to exclude tracks associated to tau lepton decay "leg"
 // from primary event vertex refit
@@ -1787,6 +1858,11 @@ for(edm::View<pat::Muon>::const_iterator mu=muons->begin(); mu!=muons->end(), k<
             Muon_innerTrack_eta.push_back(mu->innerTrack()->eta());
             Muon_innerTrack_phi.push_back(mu->innerTrack()->phi());
             Muon_innerTrack_normalizedChi2.push_back(mu->innerTrack()->normalizedChi2());
+            Muon_innerTrack_nLostHitsInner.push_back(mu->innerTrack()->hitPattern().numberOfLostTrackerHits(reco::HitPattern::MISSING_INNER_HITS));
+            Muon_innerTrack_nLostHitsOuter.push_back(mu->innerTrack()->hitPattern().numberOfLostTrackerHits(reco::HitPattern::MISSING_OUTER_HITS));
+            Muon_innerTrack_nPixels.push_back(mu->innerTrack()->hitPattern().numberOfValidPixelHits());
+            Muon_innerTrack_nValidHits.push_back(mu->innerTrack()->hitPattern().numberOfValidTrackerHits());
+            Muon_innerTrack_nLostHitsOn.push_back(mu->innerTrack()->hitPattern().numberOfLostTrackerHits(reco::HitPattern::TRACK_HITS));	    
         }else{
             Muon_innerTrack_ValidFraction.push_back( -99);
             Muon_innerTrack_highPurity.push_back( -99);
@@ -1798,6 +1874,11 @@ for(edm::View<pat::Muon>::const_iterator mu=muons->begin(); mu!=muons->end(), k<
             Muon_innerTrack_eta.push_back(-999);
             Muon_innerTrack_phi.push_back(-999);
             Muon_innerTrack_normalizedChi2.push_back(-999);
+            Muon_innerTrack_nLostHitsInner.push_back(-99);
+            Muon_innerTrack_nLostHitsOuter.push_back(-99);
+            Muon_innerTrack_nPixels.push_back(-99);
+            Muon_innerTrack_nValidHits.push_back(-99);
+            Muon_innerTrack_nLostHitsOn.push_back(-99);	    
         }
         if (mu->outerTrack().isNonnull()){
             Muon_outerTrack_p.push_back(mu->outerTrack()->p());
@@ -1829,7 +1910,46 @@ for(edm::View<pat::Muon>::const_iterator mu=muons->begin(); mu!=muons->end(), k<
         Muon_combinedQuality_globalDeltaEtaPhi.push_back(mu->combinedQuality().globalDeltaEtaPhi);
         Muon_combinedQuality_tightMatch.push_back(mu->combinedQuality().tightMatch);
         Muon_combinedQuality_glbTrackProbability.push_back(mu->combinedQuality().glbTrackProbability);
-    
+
+        // do matching magic
+        const int n_stations = 2;
+        std::vector<MatchPair> matches;
+        for (unsigned int i=0; i < n_stations; ++i)
+            matches.push_back(std::pair(nullptr, nullptr));
+
+        for (auto& chamberMatch : mu->matches()){
+            unsigned int station = chamberMatch.station() - 1;
+            if (station >= n_stations) continue;
+
+            for (auto& segmentMatch : chamberMatch.segmentMatches){
+              if ( not segmentMatch.isMask(reco::MuonSegmentMatch::BestInStationByDR) ||
+                   not segmentMatch.isMask(reco::MuonSegmentMatch::BelongsToTrackByDR) )
+                continue;
+
+
+            auto match_pair = MatchPair(&chamberMatch, &segmentMatch);
+
+            if (matches[station].first)
+                    matches[station] = getBetterMatch(matches[station], match_pair);
+            else
+                    matches[station] = match_pair;
+            }
+        }
+
+        Muon_combinedQuality_match1_dX.push_back(dX(matches[0]));
+        Muon_combinedQuality_match1_pullX.push_back(pullX(matches[0]));
+        Muon_combinedQuality_match1_pullDxDz.push_back(pullDxDz(matches[0]));
+        Muon_combinedQuality_match1_dY.push_back(dY(matches[0]));
+        Muon_combinedQuality_match1_pullY.push_back(pullY(matches[0]));
+        Muon_combinedQuality_match1_pullDyDz.push_back(pullDyDz(matches[0]));
+
+        Muon_combinedQuality_match2_dX.push_back(dX(matches[1]));
+        Muon_combinedQuality_match2_pullX.push_back(pullX(matches[1]));
+        Muon_combinedQuality_match2_pullDxDz.push_back(pullDxDz(matches[1]));
+        Muon_combinedQuality_match2_dY.push_back(dY(matches[1]));
+        Muon_combinedQuality_match2_pullY.push_back(pullY(matches[1]));
+        Muon_combinedQuality_match2_pullDyDz.push_back(pullDyDz(matches[1]));	
+
         Muon_calEnergy_em.push_back(mu->calEnergy().em);
         Muon_calEnergy_emS9.push_back(mu->calEnergy().emS9);
         Muon_calEnergy_emS25.push_back(mu->calEnergy().emS25);
@@ -2038,6 +2158,12 @@ for(edm::View<pat::Muon>::const_iterator mu=muons->begin(); mu!=muons->end(), k<
 
     Muon_innerTrack_highPurity.clear();
     Muon_innerTrack_ValidFraction.clear();
+    Muon_innerTrack_nLostHitsInner.clear();
+    Muon_innerTrack_nLostHitsOuter.clear();
+    Muon_innerTrack_nPixels.clear();
+    Muon_innerTrack_nValidHits.clear();
+    Muon_innerTrack_nLostHitsOn.clear();
+
     Muon_Numberofvalidtrackerhits.clear();
     Muon_validMuonHitComb.clear();
     Muon_IP2D_BS.clear();
@@ -2068,6 +2194,21 @@ for(edm::View<pat::Muon>::const_iterator mu=muons->begin(); mu!=muons->end(), k<
     Muon_combinedQuality_tightMatch.clear();
     Muon_combinedQuality_glbTrackProbability.clear();
     
+
+    Muon_combinedQuality_match1_dX.clear();
+    Muon_combinedQuality_match1_pullX.clear();
+    Muon_combinedQuality_match1_pullDxDz.clear();
+    Muon_combinedQuality_match1_dY.clear();
+    Muon_combinedQuality_match1_pullY.clear();
+    Muon_combinedQuality_match1_pullDyDz.clear();
+
+    Muon_combinedQuality_match2_dX.clear();
+    Muon_combinedQuality_match2_pullX.clear();
+    Muon_combinedQuality_match2_pullDxDz.clear();
+    Muon_combinedQuality_match2_dY.clear();
+    Muon_combinedQuality_match2_pullY.clear();
+    Muon_combinedQuality_match2_pullDyDz.clear();
+
     Muon_calEnergy_em.clear();
     Muon_calEnergy_emS9.clear();
     Muon_calEnergy_emS25.clear();
@@ -2454,6 +2595,11 @@ void MiniAnaTau3Mu::beginJob() {
     
     tree_->Branch("Muon_innerTrack_phi", &Muon_innerTrack_phi);
     tree_->Branch("Muon_innerTrack_normalizedChi2", &Muon_innerTrack_normalizedChi2);
+    tree_->Branch("Muon_innerTrack_nLostHitsInner", &Muon_innerTrack_nLostHitsInner);
+    tree_->Branch("Muon_innerTrack_nLostHitsOuter", &Muon_innerTrack_nLostHitsOuter);
+    tree_->Branch("Muon_innerTrack_nPixels", &Muon_innerTrack_nPixels);
+    tree_->Branch("Muon_innerTrack_nValidHits", &Muon_innerTrack_nValidHits);
+    tree_->Branch("Muon_innerTrack_nLostHitsOn", &Muon_innerTrack_nLostHitsOn);
     tree_->Branch("Muon_QInnerOuter", &Muon_QInnerOuter);
     
     tree_->Branch("Muon_combinedQuality_updatedSta", &Muon_combinedQuality_updatedSta);
@@ -2467,7 +2613,21 @@ void MiniAnaTau3Mu::beginJob() {
     tree_->Branch("Muon_combinedQuality_globalDeltaEtaPhi", &Muon_combinedQuality_globalDeltaEtaPhi);
     tree_->Branch("Muon_combinedQuality_tightMatch", &Muon_combinedQuality_tightMatch);
     tree_->Branch("Muon_combinedQuality_glbTrackProbability", &Muon_combinedQuality_glbTrackProbability);
-    
+   
+    tree_->Branch("Muon_combinedQuality_match1_dX", &Muon_combinedQuality_match1_dX);
+    tree_->Branch("Muon_combinedQuality_match1_pullX", &Muon_combinedQuality_match1_pullX);
+    tree_->Branch("Muon_combinedQuality_match1_pullDxDz", &Muon_combinedQuality_match1_pullDxDz);
+    tree_->Branch("Muon_combinedQuality_match1_dY", &Muon_combinedQuality_match1_dY);
+    tree_->Branch("Muon_combinedQuality_match1_pullY", &Muon_combinedQuality_match1_pullY);
+    tree_->Branch("Muon_combinedQuality_match1_pullDyDz", &Muon_combinedQuality_match1_pullDyDz);
+
+    tree_->Branch("Muon_combinedQuality_match2_dX", &Muon_combinedQuality_match2_dX);
+    tree_->Branch("Muon_combinedQuality_match2_pullX", &Muon_combinedQuality_match2_pullX);
+    tree_->Branch("Muon_combinedQuality_match2_pullDxDz", &Muon_combinedQuality_match2_pullDxDz);
+    tree_->Branch("Muon_combinedQuality_match2_dY", &Muon_combinedQuality_match2_dY);
+    tree_->Branch("Muon_combinedQuality_match2_pullY", &Muon_combinedQuality_match2_pullY);
+    tree_->Branch("Muon_combinedQuality_match2_pullDyDz", &Muon_combinedQuality_match2_pullDyDz);
+
     tree_->Branch("Muon_calEnergy_em", &Muon_calEnergy_em);
     tree_->Branch("Muon_calEnergy_emS9", &Muon_calEnergy_emS9);
     tree_->Branch("Muon_calEnergy_emS25", &Muon_calEnergy_emS25);
