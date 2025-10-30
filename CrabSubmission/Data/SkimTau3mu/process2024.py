@@ -8,7 +8,8 @@ parser.add_argument('-r', '--resubmit', action='store_true')
 a = parser.parse_args()
 
 #portions = ['Cv1', 'Cv2', 'Cv3', 'Cv4', 'Dv1', 'Dv2']
-portions = ['C', 'D','Ev1', 'Ev2','F', 'G','H', 'Iv1', 'Iv2']
+#portions = ['C', 'D','Ev1', 'Ev2','F', 'G','H', 'Iv1', 'Iv2']
+portions = ['C', 'D','Ev1', 'Ev2']
 
 '''
 eras = {'Cv1': 'C',
@@ -52,7 +53,7 @@ template = '''
 from CRABClient.UserUtilities import config, getUsername
 config = config()
 
-config.General.requestName = 'SkimDsTau3mu_2024era{era}_{version}_stream{stream}_Mini_v1'
+config.General.requestName = 'SkimDsTau3mu_2024era{era}_{version}_stream{stream}_SoftMVAVars'
 config.General.workArea = 'crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = False
@@ -60,17 +61,17 @@ config.General.transferLogs = False
 config.JobType.pluginName = 'Analysis'
 
 
-config.JobType.psetName = '/depot/cms/users/schul105/Tau3Mu/analysis/2024/CMSSW_14_0_18/src/SkimTools/SkimTau3Mu/test/run_Data2024_PatAndTree_cfg.py'
+config.JobType.psetName = '/depot/cms/users/schul105/Tau3Mu/analysis/CMSSW_15_0_6_patch1/src/SkimTools/SkimTau3Mu/test/run_Data2024_PatAndTree_cfg.py'
 
 config.Data.inputDataset = '/ParkingDoubleMuonLowMass{stream}/Run2024{era}-PromptReco-{version}/MINIAOD'
 config.Data.inputDBS = 'global'
 config.Data.splitting = 'LumiBased'
 #config.Data.splitting = 'Automatic'
 config.Data.unitsPerJob = 50
-config.Data.lumiMask = '/eos/user/c/cmsdqm/www/CAF/certification/Collisions24/Cert_Collisions2024_378981_386951_Golden.json'
+config.Data.lumiMask = 'Cert_Collisions2024_378981_386951_Golden.json'
 #config.Data.runRange = '193093-193999' # '193093-194075'
 config.Data.publication = True
-config.Data.outputDatasetTag = 'SkimDsTau3mu_2024era{era}_{version}_stream{stream}_Mini_v1'
+config.Data.outputDatasetTag = 'SkimDsTau3mu_2024era{era}_{version}_stream{stream}_SoftMVAVars'
 config.JobType.allowUndistributedCMSSW = True
 config.Site.storageSite = 'T2_US_Purdue'
 config.Site.ignoreGlobalBlacklist  = True
@@ -102,6 +103,6 @@ for portion in portions:
 
             subprocess.call(["crab", "submit", cfgName])
         if a.resubmit:
-           folder = "crab_projects/crab_SkimTau3Mu_2024era{era}_{version}_stream{stream}_Mini_v1".format(**args)
+           folder = "crab_projects/crab_SkimDsTau3mu_2024era{era}_{version}_stream{stream}_SoftMVAVars".format(**args)
            print (folder)
            subprocess.call(['crab', 'resubmit', folder])

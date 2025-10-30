@@ -28,7 +28,7 @@ template = '''
 from CRABClient.UserUtilities import config, getUsername
 config = config()
 
-config.General.requestName = 'SkimPhiPi_2022era{era}_stream{stream}_Mini_v1'
+config.General.requestName = 'SkimPhiPi_2022era{era}_stream{stream}_PS'
 config.General.workArea = 'crab_projects2022'
 config.General.transferOutputs = True
 config.General.transferLogs = False
@@ -46,7 +46,7 @@ config.Data.unitsPerJob = 50
 config.Data.lumiMask = 'https://cms-service-dqmdc.web.cern.ch/CAF/certification/Collisions22/Cert_Collisions2022_355100_362760_Golden.json'
 #config.Data.runRange = '193093-193999' # '193093-194075'
 config.Data.publication = True
-config.Data.outputDatasetTag = 'SkimPhiPi_2022era{era}_{version}_stream{stream}_Mini_v1'
+config.Data.outputDatasetTag = 'SkimPhiPi_2022era{era}_{version}_stream{stream}_PS'
 config.JobType.allowUndistributedCMSSW = True
 config.Site.storageSite = 'T2_US_Purdue'
 config.Site.ignoreGlobalBlacklist  = True
@@ -79,6 +79,6 @@ for portion in portions:
        
             subprocess.call(["crab", "submit", cfgName])
         if a.resubmit:
-           folder = "crab_projects2022/crab_SkimPhiPi_2022era{era}_stream{stream}_Mini_v1".format(**args)
+           folder = "crab_projects2022/crab_SkimPhiPi_2022era{era}_stream{stream}_PS".format(**args)
            print (folder)
            subprocess.call(['crab', 'resubmit', folder])

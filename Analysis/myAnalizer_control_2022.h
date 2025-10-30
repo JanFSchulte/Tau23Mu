@@ -1,5 +1,5 @@
-#ifndef myAnalizer_h
-#define myAnalizer_h
+#ifndef myAnalizer_control_2022_h
+#define myAnalizer_control_2022_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -23,7 +23,7 @@
 
 using namespace std;
 
-class myAnalizer {
+class myAnalizer_control_2022 {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
@@ -47,9 +47,9 @@ public :
    vector<double>  *GenParticle_Pt;
    vector<double>  *GenParticle_Eta;
    vector<double>  *GenParticle_Phi;
-   //vector<int>     *GenParticle_isDs;
-   //vector<int>     *GenParticle_isB;
-   //vector<int>     *GenParticle_isBdecay;
+   vector<int>     *GenParticle_isDs;
+   vector<int>     *GenParticle_isB;
+   vector<int>     *GenParticle_isBdecay;
    vector<int>     *GenParticle_MotherPdgId;
    Int_t           MuonCollectionSize;
    vector<float>   *MuonPt;
@@ -57,8 +57,8 @@ public :
    vector<double>  *MuonCharge;
    vector<float>   *MuonEta;
    vector<float>   *MuonPhi;
-   //vector<int>     *Muon_PdgId;
-   //vector<int>     *Muon_MotherPdgId;
+   vector<int>     *Muon_PdgId;
+   vector<int>     *Muon_MotherPdgId;
    vector<int>     *Muon_simFlavour;
    vector<double>  *Muon_vx;
    vector<double>  *Muon_vy;
@@ -135,25 +135,33 @@ public :
    vector<double>  *Muon_hadVetoEt05;
    vector<double>  *Muon_emVetoEt05;
    vector<double>  *Muon_trackerVetoPt05;
-   //vector<double>  *Track_pt;
-   //vector<double>  *Track_eta;
-   //vector<double>  *Track_phi;
-   //vector<double>  *Track_normalizedChi2;
-   //vector<double>  *Track_numberOfValidHits;
-   //vector<double>  *Track_charge;
-   //vector<double>  *Track_dxy;
-   //vector<double>  *Track_dxyError;
-   //vector<double>  *Track_dz;
-   //vector<double>  *Track_dzError;
-   //vector<double>  *Track_vx;
-   //vector<double>  *Track_vy;
-   //vector<double>  *Track_vz;
+//    vector<double>  *L2Muons_pt;
+//    vector<double>  *L2Muons_eta;
+//    vector<double>  *L2Muons_phi;
+//    vector<double>  *L2Muons_charge;
+//    vector<double>  *L3Muons_pt;
+//    vector<double>  *L3Muons_eta;
+//    vector<double>  *L3Muons_phi;
+//    vector<double>  *L3Muons_charge;
+   vector<double>  *Track_pt;
+   vector<double>  *Track_eta;
+   vector<double>  *Track_phi;
+   vector<double>  *Track_normalizedChi2;
+   vector<double>  *Track_numberOfValidHits;
+   vector<double>  *Track_charge;
+   vector<double>  *Track_dxy;
+   vector<double>  *Track_dxyError;
+   vector<double>  *Track_dz;
+   vector<double>  *Track_dzError;
+   vector<double>  *Track_vx;
+   vector<double>  *Track_vy;
+   vector<double>  *Track_vz;
    vector<double>  *Muon_validMuonHitComb;
    vector<double>  *Muon_innerTrack_ValidFraction;
    vector<double>  *Muon_Numberofvalidtrackerhits;
    vector<double>  *Muon_innerTrack_highPurity;
-   //vector<int>     *Track_pdgId;
-   Int_t           TripletCollectionSize;
+   vector<int>     *Track_pdgId;
+   Int_t           TripletCollectionSize2;
    Int_t           PVCollection_Size;
    vector<double>  *PV_x;
    vector<double>  *PV_y;
@@ -177,64 +185,64 @@ public :
    vector<double>  *Vtx12_nDOF;
    vector<double>  *Vtx23_nDOF;
    vector<double>  *Vtx13_nDOF;
-   //Int_t           SelectedTripletsSize;
-   vector<double>  *Mu1_Pt;
-   vector<double>  *Mu1_Eta;
-   vector<double>  *Mu1_Phi;
-   vector<float>   *Mu1_dRtriggerMatch;
-   vector<int>     *Mu1_TripletIndex;
+   Int_t           SelectedTripletsSize;
+   vector<double>  *Mu01_Pt;
+   vector<double>  *Mu01_Eta;
+   vector<double>  *Mu01_Phi;
+   vector<float>   *Mu01_dRtriggerMatch;
+   vector<int>     *Mu01_TripletIndex;
    vector<double>  *Mu1_NTracks03iso;
-   vector<double>  *Mu2_Pt;
-   vector<double>  *Mu2_Eta;
-   vector<double>  *Mu2_Phi;
-   vector<float>   *Mu2_dRtriggerMatch;
-   vector<int>     *Mu2_TripletIndex;
+   vector<double>  *Mu02_Pt;
+   vector<double>  *Mu02_Eta;
+   vector<double>  *Mu02_Phi;
+   vector<float>   *Mu02_dRtriggerMatch;
+   vector<int>     *Mu02_TripletIndex;
    vector<double>  *Mu2_NTracks03iso;
-   vector<double>  *Mu3_Pt;
-   vector<double>  *Mu3_Eta;
-   vector<double>  *Mu3_Phi;
-   vector<float>   *Mu3_dRtriggerMatch;
-   vector<int>     *Mu3_TripletIndex;
-   vector<double>  *Mu3_NTracks03iso;
-   //vector<int>     *selectedTripletsIndex;
-   vector<double>  *GenMatchMu1_SimPt;
-   vector<double>  *GenMatchMu2_SimPt;
-   vector<double>  *GenMatchMu1_SimEta;
-   vector<double>  *GenMatchMu2_SimEta;
-   vector<double>  *GenMatchMu1_SimPhi;
-   vector<double>  *GenMatchMu2_SimPhi;
-   vector<double>  *GenMatchMu1_Pt;
-   vector<double>  *GenMatchMu2_Pt;
-   vector<double>  *GenMatchMu1_Eta;
-   vector<double>  *GenMatchMu2_Eta;
-   vector<double>  *GenMatchMu1_Phi;
-   vector<double>  *GenMatchMu2_Phi;
+   vector<double>  *Tr_Pt;
+   vector<double>  *Tr_Eta;
+   vector<double>  *Tr_Phi;
+   vector<float>   *Tr_dRtriggerMatch;
+   vector<int>     *Tr_TripletIndex;
+   vector<double>  *Tr_NTracks03iso;
+   vector<int>     *selectedTripletsIndex;
+   vector<double>  *GenMatchMu01_SimPt;
+   vector<double>  *GenMatchMu02_SimPt;
+   vector<double>  *GenMatchMu01_SimEta;
+   vector<double>  *GenMatchMu02_SimEta;
+   vector<double>  *GenMatchMu01_SimPhi;
+   vector<double>  *GenMatchMu02_SimPhi;
+   vector<double>  *GenMatchMu01_Pt;
+   vector<double>  *GenMatchMu02_Pt;
+   vector<double>  *GenMatchMu01_Eta;
+   vector<double>  *GenMatchMu02_Eta;
+   vector<double>  *GenMatchMu01_Phi;
+   vector<double>  *GenMatchMu02_Phi;
    vector<double>  *Triplet_mindca_iso;
    vector<double>  *Triplet_relativeiso;
    vector<double>  *Triplet_relativeiso2;
-   vector<double>  *TripletVtx_x;
-   vector<double>  *TripletVtx_y;
-   vector<double>  *TripletVtx_z;
-   vector<double>  *TripletVtx_Chi2;
-   vector<double>  *TripletVtx_NDOF;
-   vector<double>  *Triplet_Mass;
-   vector<double>  *Triplet_Pt;
-   vector<double>  *Triplet_Eta;
-   vector<double>  *Triplet_Phi;
-   vector<double>  *Triplet_Charge;
-   vector<double>  *RefittedPV_x;
-   vector<double>  *RefittedPV_y;
-   vector<double>  *RefittedPV_z;
-   vector<double>  *RefittedPV_NTracks;
-   vector<int>     *RefittedPV_isValid;
+   vector<double>  *TripletVtx2_x;
+   vector<double>  *TripletVtx2_y;
+   vector<double>  *TripletVtx2_z;
+   vector<double>  *TripletVtx2_Chi2;
+   vector<double>  *TripletVtx2_NDOF;
+   vector<double>  *Triplet2_Mass;
+   vector<double>  *Triplet2_Pt;
+   vector<double>  *Triplet2_Eta;
+   vector<double>  *Triplet2_Phi;
+   vector<double>  *Triplet2_Charge;
+   vector<double>  *RefittedPV2_x;
+   vector<double>  *RefittedPV2_y;
+   vector<double>  *RefittedPV2_z;
+   vector<double>  *RefittedPV2_NTracks;
+   vector<int>     *RefittedPV2_isValid;
    vector<double>  *RefittedPV_Chi2;
    vector<double>  *RefittedPV_nDOF;
    vector<double>  *PV_bis_Chi2;
    vector<double>  *PV_bis_nDOF;
-   vector<double>  *FlightDistPVSV;
-   vector<double>  *FlightDistPVSV_Err;
-   vector<double>  *FlightDistPVSV_Significance;
-   vector<double>  *FlightDistPVSV_chi2;
+   vector<double>  *FlightDistPVSV2;
+   vector<double>  *FlightDistPVSV2_Err;
+   vector<double>  *FlightDistPVSV2_Significance;
+   vector<double>  *FlightDistPVSV2_chi2;
    vector<double>  *dxy_mu1;
    vector<double>  *dxy_mu2;
    vector<double>  *dxy_mu3;
@@ -287,9 +295,9 @@ public :
    vector<float>   *Mu1_dRtriggerMatch_Mu9_IP5;
    vector<float>   *Mu1_dRtriggerMatch_Mu9_IP6;
    vector<float>   *Mu1_dRtriggerMatch_Mu12_IP6;
-   vector<float>   *Mu1_dRtriggerMatch_2017;
-   vector<float>   *Mu2_dRtriggerMatch_2017;
-   vector<float>   *Mu3_dRtriggerMatch_2017;
+   vector<double>  *Mu1_dRtriggerMatch_2017;
+   vector<double>  *Mu2_dRtriggerMatch_2017;
+   vector<double>  *Mu3_dRtriggerMatch_2017;
    vector<double>  *MuonPt_HLT2017;
    vector<double>  *MuonEta_HLT2017;
    vector<double>  *MuonPhi_HLT2017;
@@ -299,42 +307,24 @@ public :
     vector<double>  *MuonPt_HLT_DiMu_Incl_displ;
     vector<double>  *MuonEta_HLT_DiMu_Incl_displ;
     vector<double>  *MuonPhi_HLT_DiMu_Incl_displ;
-   //vector<double>  *MuonPt_HLT_Dimuon;
-   //vector<double>  *MuonEta_HLT_Dimuon;
-   //vector<double>  *MuonPhi_HLT_Dimuon;
+   vector<double>  *MuonPt_HLT_Dimuon;
+   vector<double>  *MuonEta_HLT_Dimuon;
+   vector<double>  *MuonPhi_HLT_Dimuon;
    vector<double>  *MuonPt_HLT;
    vector<double>  *MuonEta_HLT;
    vector<double>  *MuonPhi_HLT;
-    // new L1 branches
-    vector<double>  *L1Muon_BX;
-    vector<double>  *L1Muon_Charge;
-    vector<double>  *L1Muon_Eta;
-    vector<double>  *L1Muon_Pt;
-    vector<double>  *L1Muon_Phi;
-    vector<double>  *L1Muon_Quality;
-    vector<double>  *L1Muon_EtaAtVtx;
-    vector<double>  *L1Muon_PhiAtVtx;
-
-    vector<double>  *Muon_combinedQuality_match1_dX;
-    vector<double>  *Muon_combinedQuality_match1_pullX;
-    vector<double>  *Muon_combinedQuality_match1_pullDxDz;
-    vector<double>  *Muon_combinedQuality_match1_dY;
-    vector<double>  *Muon_combinedQuality_match1_pullY;
-    vector<double>  *Muon_combinedQuality_match1_pullDyDz;
-    vector<double>  *Muon_combinedQuality_match2_dX;
-    vector<double>  *Muon_combinedQuality_match2_pullX;
-    vector<double>  *Muon_combinedQuality_match2_pullDxDz;
-    vector<double>  *Muon_combinedQuality_match2_dY;
-    vector<double>  *Muon_combinedQuality_match2_pullY;
-    vector<double>  *Muon_combinedQuality_match2_pullDyDz;
-
-
-
-    //Double_t *MVASoft1;
-    //Double_t *MVASoft2;
-    //Double_t *MVASoft3;
-    
-    //Double_t *d0sig_max;
+    vector<double> *L1Muon_Pt;
+    vector<double> *L1Muon_Eta;
+    vector<double> *L1Muon_Phi;
+    vector<double> *L1Muon_EtaAtVtx;
+    vector<double> *L1Muon_PhiAtVtx;
+    vector<double> *L1Muon_BX;
+    vector<double> *L1Muon_Quality;
+    vector<double> *L1Muon_Charge;
+    vector<double> *L1Muon_ChargeValid;
+    vector<double> *L1Muon_TfMuonIndex;
+    vector<double> *L1Muon_rank;
+    vector<double> *L1Muon_isoSum;
 
 
    // List of branches
@@ -353,10 +343,10 @@ public :
    TBranch        *b_GenParticle_Pt;   //!
    TBranch        *b_GenParticle_Eta;   //!
    TBranch        *b_GenParticle_Phi;   //!
-   //TBranch        *b_GenParticle_isDs;   //!
-   //TBranch        *b_GenParticle_isB;   //!
-   //TBranch        *b_GenParticle_isBdecay;   //!
-   //TBranch        *b_GenParticle_MotherPdgId;   //!
+   TBranch        *b_GenParticle_isDs;   //!
+   TBranch        *b_GenParticle_isB;   //!
+   TBranch        *b_GenParticle_isBdecay;   //!
+   TBranch        *b_GenParticle_MotherPdgId;   //!
    TBranch        *b_MuonCollectionSize;   //!
    TBranch        *b_MuonPt;   //!
    TBranch        *b_MuonEnergy;   //!
@@ -441,25 +431,33 @@ public :
    TBranch        *b_Muon_hadVetoEt05;   //!
    TBranch        *b_Muon_emVetoEt05;   //!
    TBranch        *b_Muon_trackerVetoPt05;   //!
-   //TBranch        *b_Track_pt;   //!
-   //TBranch        *b_Track_eta;   //!
-   //TBranch        *b_Track_phi;   //!
-   //TBranch        *b_Track_normalizedChi2;   //!
-   //TBranch        *b_Track_numberOfValidHits;   //!
-   //TBranch        *b_Track_charge;   //!
-   //TBranch        *b_Track_dxy;   //!
-   //TBranch        *b_Track_dxyError;   //!
-   //TBranch        *b_Track_dz;   //!
-   //TBranch        *b_Track_dzError;   //!
-   //TBranch        *b_Track_vx;   //!
-   //TBranch        *b_Track_vy;   //!
-   //TBranch        *b_Track_vz;   //!
+//   TBranch        *b_L2Muons_pt;   //!
+//   TBranch        *b_L2Muons_eta;   //!
+//   TBranch        *b_L2Muons_phi;   //!
+//   TBranch        *b_L2Muons_charge;   //!
+//    TBranch        *b_L3Muons_pt;   //!
+//    TBranch        *b_L3Muons_eta;   //!
+//    TBranch        *b_L3Muons_phi;   //!
+//    TBranch        *b_L3Muons_charge;   //!
+    TBranch        *b_Track_pt;   //!
+   TBranch        *b_Track_eta;   //!
+   TBranch        *b_Track_phi;   //!
+   TBranch        *b_Track_normalizedChi2;   //!
+   TBranch        *b_Track_numberOfValidHits;   //!
+   TBranch        *b_Track_charge;   //!
+   TBranch        *b_Track_dxy;   //!
+   TBranch        *b_Track_dxyError;   //!
+   TBranch        *b_Track_dz;   //!
+   TBranch        *b_Track_dzError;   //!
+   TBranch        *b_Track_vx;   //!
+   TBranch        *b_Track_vy;   //!
+   TBranch        *b_Track_vz;   //!
    TBranch        *b_Muon_validMuonHitComb;   //!
    TBranch        *b_Muon_innerTrack_ValidFraction;   //!
    TBranch        *b_Muon_Numberofvalidtrackerhits;   //!
    TBranch        *b_Muon_innerTrack_highPurity;   //!
-   //TBranch        *b_Track_pdgId;   //!
-   TBranch        *b_TripletCollectionSize;   //!
+   TBranch        *b_Track_pdgId;   //!
+   TBranch        *b_TripletCollectionSize2;   //!
    TBranch        *b_PVCollection_Size;   //!
    TBranch        *b_PV_x;   //!
    TBranch        *b_PV_y;   //!
@@ -483,64 +481,64 @@ public :
    TBranch        *b_Vtx12_nDOF;   //!
    TBranch        *b_Vtx23_nDOF;   //!
    TBranch        *b_Vtx13_nDOF;   //!
-   //TBranch        *b_SelectedTripletsSize;   //!
-   TBranch        *b_Mu1_Pt;   //!
-   TBranch        *b_Mu1_Eta;   //!
-   TBranch        *b_Mu1_Phi;   //!
-   TBranch        *b_Mu1_dRtriggerMatch;   //!
-   TBranch        *b_Mu1_TripletIndex;   //!
+   TBranch        *b_SelectedTripletsSize;   //!
+   TBranch        *b_Mu01_Pt;   //!
+   TBranch        *b_Mu01_Eta;   //!
+   TBranch        *b_Mu01_Phi;   //!
+   TBranch        *b_Mu01_dRtriggerMatch;   //!
+   TBranch        *b_Mu01_TripletIndex;   //!
    TBranch        *b_Mu1_NTracks03iso;   //!
-   TBranch        *b_Mu2_Pt;   //!
-   TBranch        *b_Mu2_Eta;   //!
-   TBranch        *b_Mu2_Phi;   //!
-   TBranch        *b_Mu2_dRtriggerMatch;   //!
-   TBranch        *b_Mu2_TripletIndex;   //!
+   TBranch        *b_Mu02_Pt;   //!
+   TBranch        *b_Mu02_Eta;   //!
+   TBranch        *b_Mu02_Phi;   //!
+   TBranch        *b_Mu02_dRtriggerMatch;   //!
+   TBranch        *b_Mu02_TripletIndex;   //!
    TBranch        *b_Mu2_NTracks03iso;   //!
-   TBranch        *b_Mu3_Pt;   //!
-   TBranch        *b_Mu3_Eta;   //!
-   TBranch        *b_Mu3_Phi;   //!
-   TBranch        *b_Mu3_dRtriggerMatch;   //!
-   TBranch        *b_Mu3_TripletIndex;   //!
-   TBranch        *b_Mu3_NTracks03iso;   //!
-   //TBranch        *b_selectedTripletsIndex;   //!
-   TBranch        *b_GenMatchMu1_SimPt;   //!
-   TBranch        *b_GenMatchMu2_SimPt;   //!
-   TBranch        *b_GenMatchMu1_SimEta;   //!
-   TBranch        *b_GenMatchMu2_SimEta;   //!
-   TBranch        *b_GenMatchMu1_SimPhi;   //!
-   TBranch        *b_GenMatchMu2_SimPhi;   //!
-   TBranch        *b_GenMatchMu1_Pt;   //!
-   TBranch        *b_GenMatchMu2_Pt;   //!
-   TBranch        *b_GenMatchMu1_Eta;   //!
-   TBranch        *b_GenMatchMu2_Eta;   //!
-   TBranch        *b_GenMatchMu1_Phi;   //!
-   TBranch        *b_GenMatchMu2_Phi;   //!
+   TBranch        *b_Tr_Pt;   //!
+   TBranch        *b_Tr_Eta;   //!
+   TBranch        *b_Tr_Phi;   //!
+   TBranch        *b_Tr_dRtriggerMatch;   //!
+   TBranch        *b_Tr_TripletIndex;   //!
+   TBranch        *b_Tr_NTracks03iso;   //!
+   TBranch        *b_selectedTripletsIndex;   //!
+   TBranch        *b_GenMatchMu01_SimPt;   //!
+   TBranch        *b_GenMatchMu02_SimPt;   //!
+   TBranch        *b_GenMatchMu01_SimEta;   //!
+   TBranch        *b_GenMatchMu02_SimEta;   //!
+   TBranch        *b_GenMatchMu01_SimPhi;   //!
+   TBranch        *b_GenMatchMu02_SimPhi;   //!
+   TBranch        *b_GenMatchMu01_Pt;   //!
+   TBranch        *b_GenMatchMu02_Pt;   //!
+   TBranch        *b_GenMatchMu01_Eta;   //!
+   TBranch        *b_GenMatchMu02_Eta;   //!
+   TBranch        *b_GenMatchMu01_Phi;   //!
+   TBranch        *b_GenMatchMu02_Phi;   //!
    TBranch        *b_Triplet_mindca_iso;   //!
    TBranch        *b_Triplet_relativeiso;   //!
    TBranch        *b_Triplet_relativeiso2;   //!
-   TBranch        *b_TripletVtx_x;   //!
-   TBranch        *b_TripletVtx_y;   //!
-   TBranch        *b_TripletVtx_z;   //!
-   TBranch        *b_TripletVtx_Chi2;   //!
-   TBranch        *b_TripletVtx_NDOF;   //!
-   TBranch        *b_Triplet_Mass;   //!
-   TBranch        *b_Triplet_Pt;   //!
-   TBranch        *b_Triplet_Eta;   //!
-   TBranch        *b_Triplet_Phi;   //!
-   TBranch        *b_Triplet_Charge;   //!
-   TBranch        *b_RefittedPV_x;   //!
-   TBranch        *b_RefittedPV_y;   //!
-   TBranch        *b_RefittedPV_z;   //!
-   TBranch        *b_RefittedPV_NTracks;   //!
-   TBranch        *b_RefittedPV_isValid;   //!
+   TBranch        *b_TripletVtx2_x;   //!
+   TBranch        *b_TripletVtx2_y;   //!
+   TBranch        *b_TripletVtx2_z;   //!
+   TBranch        *b_TripletVtx2_Chi2;   //!
+   TBranch        *b_TripletVtx2_NDOF;   //!
+   TBranch        *b_Triplet2_Mass;   //!
+   TBranch        *b_Triplet2_Pt;   //!
+   TBranch        *b_Triplet2_Eta;   //!
+   TBranch        *b_Triplet2_Phi;   //!
+   TBranch        *b_Triplet2_Charge;   //!
+   TBranch        *b_RefittedPV2_x;   //!
+   TBranch        *b_RefittedPV2_y;   //!
+   TBranch        *b_RefittedPV2_z;   //!
+   TBranch        *b_RefittedPV2_NTracks;   //!
+   TBranch        *b_RefittedPV2_isValid;   //!
    TBranch        *b_RefittedPV_Chi2;   //!
    TBranch        *b_RefittedPV_nDOF;   //!
    TBranch        *b_PV_bis_Chi2;   //!
    TBranch        *b_PV_bis_nDOF;   //!
-   TBranch        *b_FlightDistPVSV;   //!
-   TBranch        *b_FlightDistPVSV_Err;   //!
-   TBranch        *b_FlightDistPVSV_Significance;   //!
-   TBranch        *b_FlightDistPVSV_chi2;   //!
+   TBranch        *b_FlightDistPVSV2;   //!
+   TBranch        *b_FlightDistPVSV2_Err;   //!
+   TBranch        *b_FlightDistPVSV2_Significance;   //!
+   TBranch        *b_FlightDistPVSV2_chi2;   //!
    TBranch        *b_dxy_mu1;   //!
    TBranch        *b_dxy_mu2;   //!
    TBranch        *b_dxy_mu3;   //!
@@ -599,96 +597,78 @@ public :
    TBranch        *b_MuonPt_HLT2017;   //!
    TBranch        *b_MuonEta_HLT2017;   //!
    TBranch        *b_MuonPhi_HLT2017;   //!
-    TBranch        *b_MuonPt_HLT_DiMu_Incl;  //!
-    TBranch        *b_MuonEta_HLT_DiMu_Incl;  //!
-    TBranch        *b_MuonPhi_HLT_DiMu_Incl;  //!
-    TBranch        *b_MuonPt_HLT_DiMu_Incl_displ;  //!
-    TBranch        *b_MuonEta_HLT_DiMu_Incl_displ; //!
-    TBranch        *b_MuonPhi_HLT_DiMu_Incl_displ;  //!
-    //TBranch        *b_MuonPt_HLT_Dimuon;   //!
-   //TBranch        *b_MuonEta_HLT_Dimuon;   //!
-   //TBranch        *b_MuonPhi_HLT_Dimuon;   //!
+    TBranch        *b_MuonPt_HLT_DiMu_Incl;
+    TBranch        *b_MuonEta_HLT_DiMu_Incl;
+    TBranch        *b_MuonPhi_HLT_DiMu_Incl;
+    TBranch        *b_MuonPt_HLT_DiMu_Incl_displ;
+    TBranch        *b_MuonEta_HLT_DiMu_Incl_displ;
+    TBranch        *b_MuonPhi_HLT_DiMu_Incl_displ;
+   TBranch        *b_MuonPt_HLT_Dimuon;   //!
+   TBranch        *b_MuonEta_HLT_Dimuon;   //!
+   TBranch        *b_MuonPhi_HLT_Dimuon;   //!
    TBranch        *b_MuonPt_HLT;   //!
    TBranch        *b_MuonEta_HLT;   //!
    TBranch        *b_MuonPhi_HLT;   //!
-    // new L1 branches
-    TBranch         *b_L1Muon_BX;
-    TBranch         *b_L1Muon_Charge;
-    TBranch         *b_L1Muon_Eta;
-    TBranch         *b_L1Muon_Pt;
-    TBranch         *b_L1Muon_Phi;
-    TBranch         *b_L1Muon_Quality;
-    TBranch         *b_L1Muon_EtaAtVtx;
-    TBranch         *b_L1Muon_PhiAtVtx;
-
-    TBranch         *b_Muon_combinedQuality_match1_dX;
-    TBranch         *b_Muon_combinedQuality_match1_pullX;
-    TBranch         *b_Muon_combinedQuality_match1_pullDxDz;
-    TBranch         *b_Muon_combinedQuality_match1_dY;
-    TBranch         *b_Muon_combinedQuality_match1_pullY;
-    TBranch         *b_Muon_combinedQuality_match1_pullDyDz;
-    TBranch         *b_Muon_combinedQuality_match2_dX;
-    TBranch         *b_Muon_combinedQuality_match2_pullX;
-    TBranch         *b_Muon_combinedQuality_match2_pullDxDz;
-    TBranch         *b_Muon_combinedQuality_match2_dY;
-    TBranch         *b_Muon_combinedQuality_match2_pullY;
-    TBranch         *b_Muon_combinedQuality_match2_pullDyDz;
+    TBranch        *b_L1Muon_Pt;   //!
+    TBranch        *b_L1Muon_Eta;   //!
+    TBranch        *b_L1Muon_Phi;   //!
+    TBranch        *b_L1Muon_EtaAtVtx;   //!
+    TBranch        *b_L1Muon_PhiAtVtx;   //!
+    TBranch        *b_L1Muon_BX;   //!
+    TBranch        *b_L1Muon_Quality;   //!
+    TBranch        *b_L1Muon_Charge;   //!
+    TBranch        *b_L1Muon_ChargeValid;   //!
+    TBranch        *b_L1Muon_TfMuonIndex;   //!
+    TBranch        *b_L1Muon_rank;   //!
+    TBranch        *b_L1Muon_isoSum;   //!
 
 
-
-    //TBranch         *b_MVASoft1;
-    //TBranch         *b_MVASoft2;
-    //TBranch         *b_MVASoft3;
-    //TBranch         *b_d0sig_max;
-
-   myAnalizer(TTree *tree, TString fname);
-   virtual ~myAnalizer();
+   myAnalizer_control_2022(TTree *tree, TString fname);
+   virtual ~myAnalizer_control_2022();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop_Tau3mu(TString type, TString datasetName);
+   virtual void     Loop_DsPhiPi(TString type, TString datasetName);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
    virtual Int_t    BestTripletFinder(vector<int> triplIndex);
-   virtual Double_t deltaR(Double_t eta1, Double_t eta2, Double_t phi1, Double_t phi2);
    virtual Double_t DimuonMass(Int_t mu_index1, Int_t mu_index2);
    virtual void     Draw_CutEffCanvas(TCanvas *canv, TH1I *hist, Int_t cut[NCUTS], TString listCut[NCUTS]);
+   virtual Bool_t   DuplicateFinder(Double_t eta1, Double_t eta2, Double_t etaTr, Double_t phi1, Double_t phi2, Double_t phiTr, Double_t pt1, Double_t pt2, Double_t ptTr);
    virtual void     Fill_CutName(TString listCut[NCUTS]);
-   virtual void     Get_MuonVariables(Int_t mu_Ind[NMU], Double_t pt[NMU], Double_t eta[NMU], Double_t phi[NMU]);
-   virtual Bool_t   isPairDeltaRGood(Int_t ntriplet, Double_t DeltaRmax);
-   virtual Bool_t   isPairDeltaZGood(Double_t vz1, Double_t vz2, Double_t vz3, Double_t DeltaZmax);
+   virtual void     Get_MuonAndTrackVariables(Int_t mu_Ind[NMU], Double_t pt[NMU], Double_t eta[NMU], Double_t phi[NMU]);
    virtual void     MatchIndex(TString type, Int_t ind, Int_t mu_Ind[NMU], Int_t mu[NMU]);
    virtual Double_t MuonFinder(Double_t pt, Double_t eta, Double_t phi);
    virtual Double_t MuonP(Double_t pt, Double_t eta, Double_t phi);
-   virtual Double_t ResoTriplMass(Int_t mu_Ind[NMU], Int_t mu[NMU]);
+   virtual Double_t TrackFinder(Double_t pt, Double_t eta, Double_t phi);
    virtual Double_t TreeFin_Angle(Int_t ind);
-   virtual void     TreeFin_Fill(TTree *tree, Double_t isMC, Int_t ind, Int_t mu_Ind[NMU], Int_t mu[NMU], Double_t &lumi, Double_t &run, Double_t &evt, Double_t &puFactor, Double_t &category, Int_t &L1_DoubleMu0_er1p5, Int_t &L1_DoubleMu0_er1p4, Int_t &L1_DoubleMu4_dR1p2, Int_t &L1_DoubleMu4p5_dR1p2, Int_t &L1_DoubleMu0_er2p0, Int_t &L1_DoubleMu0_er2p0_bk, Int_t &L1_TripleMu_5SQ_3SQ_0, Int_t &L1_TripleMu_5SQ_3SQ_0OQ, Int_t &L1_TripleMu_3SQ_2p5SQ_0OQ_Mass_Max12, Int_t &L1_TripleMu_2SQ_1p5SQ_0OQ_Mass_Max12, Int_t &L1_TripleMu_4SQ_2p5SQ_0_OS_Mass_Max12, Int_t &L1_DoubleMu0er1p4_SQ_OS_dEta_Max1p2, Int_t &L1_DoubleMu4er2p0_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu5_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu3er2p0_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu0er1p5_SQ_OS_dEta_Max1, Int_t &L1seed, Int_t &HLTpath, Double_t &DeltaR_max, Double_t &DeltaZ_max, Double_t &Pmu3, Double_t &cLP, Double_t &tKink, Double_t &segmComp, Double_t &tripletMass, Double_t &tripletMassReso, Double_t &fv_nC, Double_t &fv_dphi3D, Double_t &fv_d3D,  Double_t &fv_d3Dsig, Double_t &d0, Double_t &d0sig, Double_t &mindca_iso, Double_t &trkRel, Double_t &Pmu1, Double_t &Ptmu1, Double_t &etamu1, Double_t &Pmu2, Double_t &Ptmu2, Double_t &etamu2, Double_t &Ptmu3, Double_t &etamu3, Double_t &P_trip, Double_t &Pt_trip, Double_t &eta_trip, Double_t &nStationsMu1, Double_t &nStationsMu2, Double_t &nStationsMu3, Double_t &Iso03Mu1, Double_t &Iso03Mu2, Double_t &Iso03Mu3, Double_t &Iso05Mu1, Double_t &Iso05Mu2, Double_t &Iso05Mu3, Double_t &nMatchesMu1, Double_t &nMatchesMu2, Double_t &nMatchesMu3, Double_t &timeAtIpInOutMu_sig1, Double_t &timeAtIpInOutMu_sig2, Double_t &timeAtIpInOutMu_sig3, Double_t &cQ_uS, Double_t &cQ_tK, Double_t &cQ_gK, Double_t &cQ_tRChi2, Double_t &cQ_sRChi2, Double_t &cQ_Chi2LP, Double_t &cQ_Chi2LM, Double_t &cQ_lD, Double_t &cQ_gDEP, Double_t &cQ_tM, Double_t &cQ_gTP, Double_t &calEn_emMu1, Double_t &calEn_emMu2, Double_t &calEn_emMu3, Double_t &calEn_hadMu1, Double_t &calEn_hadMu2, Double_t &calEn_hadMu3, Double_t &caloComp, Double_t &fliDistPVSV_Chi2, Double_t &isGlb1, Double_t &isTracker1, Double_t &isLoose1, Double_t &isSoft1, Double_t &isPF1, Double_t &isRPC1, Double_t &isSA1, Double_t &isCalo1, Double_t &isGlb2, Double_t &isTracker2, Double_t &isLoose2, Double_t &isSoft2, Double_t &isPF2, Double_t &isRPC2, Double_t &isSA2, Double_t &isCalo2, Double_t &isGlb3, Double_t &isTracker3, Double_t &isLoose3, Double_t &isSoft3, Double_t &isPF3, Double_t &isRPC3, Double_t &isSA3, Double_t &isCalo3, Double_t &Vx1, Double_t &Vx2, Double_t &Vx3, Double_t &Vy1, Double_t &Vy2, Double_t &Vy3, Double_t &Vz1, Double_t &Vz2, Double_t &Vz3, Double_t &RefVx1, Double_t &RefVx2, Double_t &RefVx3, Double_t &RefVy1, Double_t &RefVy2, Double_t &RefVy3, Double_t &RefVz1, Double_t &RefVz2, Double_t &RefVz3, Double_t &SVx, Double_t &SVy, Double_t &SVz, Double_t &had03, Double_t &had05, Double_t &nJets03, Double_t &nJets05, Double_t &nTracks03, Double_t &nTracks05, Double_t &sumPt03, Double_t &sumPt05, Double_t &hadVeto03, Double_t &hadVeto05, Double_t &emVeto03, Double_t &emVeto05, Double_t &trVeto03, Double_t &trVeto05, Double_t &EnMu1, Double_t &EnMu2, Double_t &EnMu3, Double_t &ChargeMu1, Double_t &ChargeMu2, Double_t &ChargeMu3, Double_t &isQValid1, Double_t &isTValid1, Double_t &isIsoValid1, Double_t &GLnormChi2_mu1, Double_t &GL_nValidMuHits1, Double_t &trkLayersWMeas1, Double_t &nValidPixelHits1, Double_t &outerTrk_P_1, Double_t &outerTrk_Eta_1, Double_t &outerTrk_normChi2_1, Double_t &outerTrk_muStValidHits_1, Double_t &innerTrk_P_1, Double_t &innerTrk_Eta_1, Double_t &innerTrk_normChi2_1, Double_t &QInnerOuter_1, Double_t &cQ_uS_1, Double_t &cQ_tK_1, Double_t &cQ_gK_1, Double_t &cQ_tRChi2_1, Double_t &cQ_sRChi2_1, Double_t &cQ_Chi2LP_1, Double_t &cQ_Chi2LM_1, Double_t &cQ_lD_1, Double_t &cQ_gDEP_1, Double_t &cQ_tM_1, Double_t &cQ_gTP_1, Double_t &segmComp_1, Double_t &caloComp_1, Double_t &isQValid2, Double_t &isTValid2, Double_t &isIsoValid2, Double_t &GLnormChi2_mu2, Double_t &GL_nValidMuHits2, Double_t &trkLayersWMeas2, Double_t &nValidPixelHits2, Double_t &outerTrk_P_2, Double_t &outerTrk_Eta_2, Double_t &outerTrk_normChi2_2, Double_t &outerTrk_muStValidHits_2, Double_t &innerTrk_P_2, Double_t &innerTrk_Eta_2, Double_t &innerTrk_normChi2_2, Double_t &QInnerOuter_2, Double_t &cQ_uS_2, Double_t &cQ_tK_2, Double_t &cQ_gK_2, Double_t &cQ_tRChi2_2, Double_t &cQ_sRChi2_2, Double_t &cQ_Chi2LP_2, Double_t &cQ_Chi2LM_2, Double_t &cQ_lD_2, Double_t &cQ_gDEP_2, Double_t &cQ_tM_2, Double_t &cQ_gTP_2, Double_t &segmComp_2, Double_t &caloComp_2, Double_t &isQValid3, Double_t &isTValid3, Double_t &isIsoValid3, Double_t &GLnormChi2_mu3, Double_t &GL_nValidMuHits3, Double_t &trkLayersWMeas3, Double_t &nValidPixelHits3, Double_t &outerTrk_P_3, Double_t &outerTrk_Eta_3, Double_t &outerTrk_normChi2_3, Double_t &outerTrk_muStValidHits_3, Double_t &innerTrk_P_3, Double_t &innerTrk_Eta_3, Double_t &innerTrk_normChi2_3, Double_t &QInnerOuter_3, Double_t &cQ_uS_3, Double_t &cQ_tK_3, Double_t &cQ_gK_3, Double_t &cQ_tRChi2_3, Double_t &cQ_sRChi2_3, Double_t &cQ_Chi2LP_3, Double_t &cQ_Chi2LM_3, Double_t &cQ_lD_3, Double_t &cQ_gDEP_3, Double_t &cQ_tM_3, Double_t &cQ_gTP_3, Double_t &segmComp_3, Double_t &caloComp_3, Double_t &dimu_OS1, Double_t &dimu_OS2, bool &L1DoubleMu_passed, bool &L1TripleMu_passed , Double_t &phi_mass, Int_t &mu3Matched3Mu, Int_t &mu3Matched2Mu1Tk, Int_t &passControl, Int_t &passSignal, Double_t &MVASoft1, Double_t &MVASoft2, Double_t &MVASoft3, Double_t &d0sig_max, Double_t &match1_dX_1, Double_t &match1_pullX_1, Double_t &match1_pullDxDz_1, Double_t &match1_dY_1, Double_t &match1_pullY_1, Double_t &match1_pullDyDz_1, Double_t &match2_dX_1, Double_t &match2_pullX_1, Double_t &match2_pullDxDz_1, Double_t &match2_dY_1, Double_t &match2_pullY_1, Double_t &match2_pullDyDz_1, Double_t &match1_dX_2, Double_t &match1_pullX_2, Double_t &match1_pullDxDz_2, Double_t &match1_dY_2, Double_t &match1_pullY_2, Double_t &match1_pullDyDz_2, Double_t &match2_dX_2, Double_t &match2_pullX_2, Double_t &match2_pullDxDz_2, Double_t &match2_dY_2, Double_t &match2_pullY_2, Double_t &match2_pullDyDz_2, Double_t &match1_dX_3, Double_t &match1_pullX_3, Double_t &match1_pullDxDz_3, Double_t &match1_dY_3, Double_t &match1_pullY_3, Double_t &match1_pullDyDz_3, Double_t &match2_dX_3, Double_t &match2_pullX_3, Double_t &match2_pullDxDz_3, Double_t &match2_dY_3, Double_t &match2_pullY_3, Double_t &match2_pullDyDz_3, Double_t &validMuonHitComb1, Double_t &validMuonHitComb2, Double_t &validMuonHitComb3, Double_t &nValidTrackerHits1, Double_t &nValidTrackerHits2, Double_t &nValidTrackerHits3, Double_t &innerTrk_ValidFraction_1, Double_t &innerTrk_ValidFraction_2, Double_t &innerTrk_ValidFraction_3, Double_t &innerTrk_highPurity_1, Double_t &innerTrk_highPurity_2, Double_t &innerTrk_highPurity_3, Double_t &x_bs, Double_t &y_bs, Double_t &z_bs );
-   virtual void     TreeFin_Init(TTree *&tree, Double_t &isMC, Double_t &lumi, Double_t &run, Double_t &evt, Double_t &puFactor, Double_t &category, Int_t &L1_DoubleMu0_er1p5, Int_t &L1_DoubleMu0_er1p4, Int_t &L1_DoubleMu4_dR1p2, Int_t &L1_DoubleMu4p5_dR1p2, Int_t &L1_DoubleMu0_er2p0, Int_t &L1_DoubleMu0_er2p0_bk, Int_t &L1_TripleMu_5SQ_3SQ_0, Int_t &L1_TripleMu_5SQ_3SQ_0OQ, Int_t &L1_TripleMu_3SQ_2p5SQ_0OQ_Mass_Max12, Int_t &L1_TripleMu_2SQ_1p5SQ_0OQ_Mass_Max12, Int_t &L1_TripleMu_4SQ_2p5SQ_0_OS_Mass_Max12, Int_t &L1_DoubleMu0er1p4_SQ_OS_dEta_Max1p2, Int_t &L1_DoubleMu4er2p0_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu5_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu3er2p0_SQ_OS_dR_Max1p6, Int_t &L1_DoubleMu0er1p5_SQ_OS_dEta_Max1, Int_t &L1seed, Int_t &HLTpath, Double_t &DeltaR_max, Double_t &DeltaZ_max, Double_t &Pmu3, Double_t &cLP, Double_t &tKink, Double_t &segmComp, Double_t &tripletMass, Double_t &tripletMassReso, Double_t &fv_nC, Double_t &fv_dphi3D, Double_t &fv_d3D,  Double_t &fv_d3Dsig, Double_t &d0, Double_t &d0sig, Double_t &mindca_iso, Double_t &trkRel, Double_t &Pmu1, Double_t &Ptmu1, Double_t &etamu1, Double_t &Pmu2, Double_t &Ptmu2, Double_t &etamu2, Double_t &Ptmu3, Double_t &etamu3, Double_t &P_trip, Double_t &Pt_trip, Double_t &eta_trip, Double_t &nStationsMu1, Double_t &nStationsMu2, Double_t &nStationsMu3, Double_t &Iso03Mu1, Double_t &Iso03Mu2, Double_t &Iso03Mu3, Double_t &Iso05Mu1, Double_t &Iso05Mu2, Double_t &Iso05Mu3, Double_t &nMatchesMu1, Double_t &nMatchesMu2, Double_t &nMatchesMu3, Double_t &timeAtIpInOutMu_sig1, Double_t &timeAtIpInOutMu_sig2, Double_t &timeAtIpInOutMu_sig3, Double_t &cQ_uS, Double_t &cQ_tK, Double_t &cQ_gK, Double_t &cQ_tRChi2, Double_t &cQ_sRChi2, Double_t &cQ_Chi2LP, Double_t &cQ_Chi2LM, Double_t &cQ_lD, Double_t &cQ_gDEP, Double_t &cQ_tM, Double_t &cQ_gTP, Double_t &calEn_emMu1, Double_t &calEn_emMu2, Double_t &calEn_emMu3, Double_t &calEn_hadMu1, Double_t &calEn_hadMu2, Double_t &calEn_hadMu3, Double_t &caloComp, Double_t &fliDistPVSV_Chi2, Double_t &isGlb1, Double_t &isTracker1, Double_t &isLoose1, Double_t &isSoft1, Double_t &isPF1, Double_t &isRPC1, Double_t &isSA1, Double_t &isCalo1, Double_t &isGlb2, Double_t &isTracker2, Double_t &isLoose2, Double_t &isSoft2, Double_t &isPF2, Double_t &isRPC2, Double_t &isSA2, Double_t &isCalo2, Double_t &isGlb3, Double_t &isTracker3, Double_t &isLoose3, Double_t &isSoft3, Double_t &isPF3, Double_t &isRPC3, Double_t &isSA3, Double_t &isCalo3, Double_t &Vx1, Double_t &Vx2, Double_t &Vx3, Double_t &Vy1, Double_t &Vy2, Double_t &Vy3, Double_t &Vz1, Double_t &Vz2, Double_t &Vz3, Double_t &RefVx1, Double_t &RefVx2, Double_t &RefVx3, Double_t &RefVy1, Double_t &RefVy2, Double_t &RefVy3, Double_t &RefVz1, Double_t &RefVz2, Double_t &RefVz3, Double_t &SVx, Double_t &SVy, Double_t &SVz, Double_t &had03, Double_t &had05, Double_t &nJets03, Double_t &nJets05, Double_t &nTracks03, Double_t &nTracks05, Double_t &sumPt03, Double_t &sumPt05, Double_t &hadVeto03, Double_t &hadVeto05, Double_t &emVeto03, Double_t &emVeto05, Double_t &trVeto03, Double_t &trVeto05, Double_t &EnMu1, Double_t &EnMu2, Double_t &EnMu3, Double_t &ChargeMu1, Double_t &ChargeMu2, Double_t &ChargeMu3, Double_t &isQValid1, Double_t &isTValid1, Double_t &isIsoValid1, Double_t &GLnormChi2_mu1, Double_t &GL_nValidMuHits1, Double_t &trkLayersWMeas1, Double_t &nValidPixelHits1, Double_t &outerTrk_P_1, Double_t &outerTrk_Eta_1, Double_t &outerTrk_normChi2_1, Double_t &outerTrk_muStValidHits_1, Double_t &innerTrk_P_1, Double_t &innerTrk_Eta_1, Double_t &innerTrk_normChi2_1, Double_t &QInnerOuter_1, Double_t &cQ_uS_1, Double_t &cQ_tK_1, Double_t &cQ_gK_1, Double_t &cQ_tRChi2_1, Double_t &cQ_sRChi2_1, Double_t &cQ_Chi2LP_1, Double_t &cQ_Chi2LM_1, Double_t &cQ_lD_1, Double_t &cQ_gDEP_1, Double_t &cQ_tM_1, Double_t &cQ_gTP_1, Double_t &segmComp_1, Double_t &caloComp_1, Double_t &isQValid2, Double_t &isTValid2, Double_t &isIsoValid2, Double_t &GLnormChi2_mu2, Double_t &GL_nValidMuHits2, Double_t &trkLayersWMeas2, Double_t &nValidPixelHits2, Double_t &outerTrk_P_2, Double_t &outerTrk_Eta_2, Double_t &outerTrk_normChi2_2, Double_t &outerTrk_muStValidHits_2, Double_t &innerTrk_P_2, Double_t &innerTrk_Eta_2, Double_t &innerTrk_normChi2_2, Double_t &QInnerOuter_2, Double_t &cQ_uS_2, Double_t &cQ_tK_2, Double_t &cQ_gK_2, Double_t &cQ_tRChi2_2, Double_t &cQ_sRChi2_2, Double_t &cQ_Chi2LP_2, Double_t &cQ_Chi2LM_2, Double_t &cQ_lD_2, Double_t &cQ_gDEP_2, Double_t &cQ_tM_2, Double_t &cQ_gTP_2, Double_t &segmComp_2, Double_t &caloComp_2, Double_t &isQValid3, Double_t &isTValid3, Double_t &isIsoValid3, Double_t &GLnormChi2_mu3, Double_t &GL_nValidMuHits3, Double_t &trkLayersWMeas3, Double_t &nValidPixelHits3, Double_t &outerTrk_P_3, Double_t &outerTrk_Eta_3, Double_t &outerTrk_normChi2_3, Double_t &outerTrk_muStValidHits_3, Double_t &innerTrk_P_3, Double_t &innerTrk_Eta_3, Double_t &innerTrk_normChi2_3, Double_t &QInnerOuter_3, Double_t &cQ_uS_3, Double_t &cQ_tK_3, Double_t &cQ_gK_3, Double_t &cQ_tRChi2_3, Double_t &cQ_sRChi2_3, Double_t &cQ_Chi2LP_3, Double_t &cQ_Chi2LM_3, Double_t &cQ_lD_3, Double_t &cQ_gDEP_3, Double_t &cQ_tM_3, Double_t &cQ_gTP_3, Double_t &segmComp_3, Double_t &caloComp_3, Double_t &dimu_OS1, Double_t &dimu_OS2, bool &L1DoubleMu_passed, bool &L1TripleMu_passed, Double_t &phi_mass, Int_t &mu3Matched3Mu, Int_t &mu3Matched2Mu1Tk, Int_t &passControl, Int_t &passSignal, Double_t &MVASoft1, Double_t &MVASoft2, Double_t &MVASoft3, Double_t &d0sig_max, Double_t &match1_dX_1, Double_t &match1_pullX_1, Double_t &match1_pullDxDz_1, Double_t &match1_dY_1, Double_t &match1_pullY_1, Double_t &match1_pullDyDz_1, Double_t &match2_dX_1, Double_t &match2_pullX_1, Double_t &match2_pullDxDz_1, Double_t &match2_dY_1, Double_t &match2_pullY_1, Double_t &match2_pullDyDz_1, Double_t &match1_dX_2, Double_t &match1_pullX_2, Double_t &match1_pullDxDz_2, Double_t &match1_dY_2, Double_t &match1_pullY_2, Double_t &match1_pullDyDz_2, Double_t &match2_dX_2, Double_t &match2_pullX_2, Double_t &match2_pullDxDz_2, Double_t &match2_dY_2, Double_t &match2_pullY_2, Double_t &match2_pullDyDz_2, Double_t &match1_dX_3, Double_t &match1_pullX_3, Double_t &match1_pullDxDz_3, Double_t &match1_dY_3, Double_t &match1_pullY_3, Double_t &match1_pullDyDz_3, Double_t &match2_dX_3, Double_t &match2_pullX_3, Double_t &match2_pullDxDz_3, Double_t &match2_dY_3, Double_t &match2_pullY_3, Double_t &match2_pullDyDz_3, Double_t &validMuonHitComb1, Double_t &validMuonHitComb2, Double_t &validMuonHitComb3, Double_t &nValidTrackerHits1, Double_t &nValidTrackerHits2, Double_t &nValidTrackerHits3, Double_t &innerTrk_ValidFraction_1, Double_t &innerTrk_ValidFraction_2, Double_t &innerTrk_ValidFraction_3, Double_t &innerTrk_highPurity_1, Double_t &innerTrk_highPurity_2, Double_t &innerTrk_highPurity_3, Double_t &x_bs, Double_t &y_bs, Double_t &z_bs);
+   virtual void     TreeFin_Fill(TTree *tree, Double_t &isMC, Bool_t &debugMode, Int_t ind, Int_t mu_Ind[NMU], Int_t mu[NMU], Double_t &lumi, Double_t &run, Double_t &evt, Double_t &puFactor, Int_t &L1_DoubleMu0er2p0_SQ_OS_dEta_Max1p6, Int_t &L1_DoubleMu0er2p0_SQ_OS_dEta_Max1p5, Int_t &L1_DoubleMu0er1p5_SQ_OS_dR_Max1p4, Int_t &L1_DoubleMu0er1p4_SQ_OS_dR_Max1p4, Int_t &L1_TripleMu_5SQ_3SQ_0_DoubleMu_5_3_SQ_OS_Mass_Max9, Int_t &L1_TripleMu_5SQ_3SQ_0OQ_DoubleMu_5_3_SQ_OS_Mass_Max9, Int_t &L1_TripleMu_2SQ_1p5SQ_0OQ_Mass_Max12, Int_t &L1_DoubleMu4_SQ_OS_dR_Max1p2, Int_t &L1_DoubleMu4p5_SQ_OS_dR_Max1p2 , Int_t &L1seed, Int_t &HLTpath, Double_t &DeltaR_max, Double_t &DeltaZ_max, Double_t &Pmu3, Double_t &cLP, Double_t &tKink, Double_t &segmComp, Double_t &tripletMass, Double_t &tripletMassReso, Double_t &fv_nC, Double_t &fv_dphi3D, Double_t &fv_d3D,  Double_t &fv_d3Dsig, Double_t &d0, Double_t &d0sig, Double_t &mindca_iso, Double_t &trkRel, Double_t &Pmu1, Double_t &Ptmu1, Double_t &etamu1, Double_t &phimu1, Double_t &Pmu2, Double_t &Ptmu2, Double_t &etamu2, Double_t &phimu2, Double_t &Ptmu3, Double_t &etamu3, Double_t &phimu3, Double_t &P_trip, Double_t &Pt_trip, Double_t &eta_trip, Double_t &nStationsMu1, Double_t &nStationsMu2, Double_t &nStationsMu3, Double_t &Iso03Mu1, Double_t &Iso03Mu2, Double_t &Iso03Mu3, Double_t &Iso05Mu1, Double_t &Iso05Mu2, Double_t &Iso05Mu3, Double_t &nMatchesMu1, Double_t &nMatchesMu2, Double_t &nMatchesMu3, Double_t &timeAtIpInOutMu_sig1, Double_t &timeAtIpInOutMu_sig2, Double_t &timeAtIpInOutMu_sig3, Double_t &cQ_uS, Double_t &cQ_tK, Double_t &cQ_gK, Double_t &cQ_tRChi2, Double_t &cQ_sRChi2, Double_t &cQ_Chi2LP, Double_t &cQ_Chi2LM, Double_t &cQ_lD, Double_t &cQ_gDEP, Double_t &cQ_tM, Double_t &cQ_gTP, Double_t &calEn_emMu1, Double_t &calEn_emMu2, Double_t &calEn_emMu3, Double_t &calEn_hadMu1, Double_t &calEn_hadMu2, Double_t &calEn_hadMu3, Double_t &caloComp, Double_t &fliDistPVSV_Chi2, Double_t &isGlb1, Double_t &isTracker1, Double_t &isLoose1, Double_t &isSoft1, Double_t &isPF1, Double_t &isRPC1, Double_t &isSA1, Double_t &isCalo1, Double_t &isGlb2, Double_t &isTracker2, Double_t &isLoose2, Double_t &isSoft2, Double_t &isPF2, Double_t &isRPC2, Double_t &isSA2, Double_t &isCalo2, Double_t &isGlb3, Double_t &isTracker3, Double_t &isLoose3, Double_t &isSoft3, Double_t &isPF3, Double_t &isRPC3, Double_t &isSA3, Double_t &isCalo3, Double_t &Vx1, Double_t &Vx2, Double_t &Vx3, Double_t &Vy1, Double_t &Vy2, Double_t &Vy3, Double_t &Vz1, Double_t &Vz2, Double_t &Vz3, Double_t &RefVx1, Double_t &RefVx2, Double_t &RefVx3, Double_t &RefVy1, Double_t &RefVy2, Double_t &RefVy3, Double_t &RefVz1, Double_t &RefVz2, Double_t &RefVz3, Double_t &SVx, Double_t &SVy, Double_t &SVz, Double_t &had03, Double_t &had05, Double_t &nJets03, Double_t &nJets05, Double_t &nTracks03, Double_t &nTracks05, Double_t &sumPt03, Double_t &sumPt05, Double_t &hadVeto03, Double_t &hadVeto05, Double_t &emVeto03, Double_t &emVeto05, Double_t &trVeto03, Double_t &trVeto05, Double_t &EnMu1, Double_t &EnMu2, Double_t &EnMu3, Double_t &ChargeMu1, Double_t &ChargeMu2, Double_t &ChargeMu3, Double_t &isQValid1, Double_t &isTValid1, Double_t &isIsoValid1, Double_t &GLnormChi2_mu1, Double_t &GL_nValidMuHits1, Double_t &trkLayersWMeas1, Double_t &nValidPixelHits1, Double_t &outerTrk_P_1, Double_t &outerTrk_Eta_1, Double_t &outerTrk_normChi2_1, Double_t &outerTrk_muStValidHits_1, Double_t &innerTrk_P_1, Double_t &innerTrk_Eta_1, Double_t &innerTrk_normChi2_1, Double_t &QInnerOuter_1, Double_t &cQ_uS_1, Double_t &cQ_tK_1, Double_t &cQ_gK_1, Double_t &cQ_tRChi2_1, Double_t &cQ_sRChi2_1, Double_t &cQ_Chi2LP_1, Double_t &cQ_Chi2LM_1, Double_t &cQ_lD_1, Double_t &cQ_gDEP_1, Double_t &cQ_tM_1, Double_t &cQ_gTP_1, Double_t &segmComp_1, Double_t &caloComp_1, Double_t &isQValid2, Double_t &isTValid2, Double_t &isIsoValid2, Double_t &GLnormChi2_mu2, Double_t &GL_nValidMuHits2, Double_t &trkLayersWMeas2, Double_t &nValidPixelHits2, Double_t &outerTrk_P_2, Double_t &outerTrk_Eta_2, Double_t &outerTrk_normChi2_2, Double_t &outerTrk_muStValidHits_2, Double_t &innerTrk_P_2, Double_t &innerTrk_Eta_2, Double_t &innerTrk_normChi2_2, Double_t &QInnerOuter_2, Double_t &cQ_uS_2, Double_t &cQ_tK_2, Double_t &cQ_gK_2, Double_t &cQ_tRChi2_2, Double_t &cQ_sRChi2_2, Double_t &cQ_Chi2LP_2, Double_t &cQ_Chi2LM_2, Double_t &cQ_lD_2, Double_t &cQ_gDEP_2, Double_t &cQ_tM_2, Double_t &cQ_gTP_2, Double_t &segmComp_2, Double_t &caloComp_2, Double_t &isQValid3, Double_t &isTValid3, Double_t &isIsoValid3, Double_t &GLnormChi2_mu3, Double_t &GL_nValidMuHits3, Double_t &trkLayersWMeas3, Double_t &nValidPixelHits3, Double_t &outerTrk_P_3, Double_t &outerTrk_Eta_3, Double_t &outerTrk_normChi2_3, Double_t &outerTrk_muStValidHits_3, Double_t &innerTrk_P_3, Double_t &innerTrk_Eta_3, Double_t &innerTrk_normChi2_3, Double_t &QInnerOuter_3, Double_t &cQ_uS_3, Double_t &cQ_tK_3, Double_t &cQ_gK_3, Double_t &cQ_tRChi2_3, Double_t &cQ_sRChi2_3, Double_t &cQ_Chi2LP_3, Double_t &cQ_Chi2LM_3, Double_t &cQ_lD_3, Double_t &cQ_gDEP_3, Double_t &cQ_tM_3, Double_t &cQ_gTP_3, Double_t &segmComp_3, Double_t &caloComp_3, Double_t &GenParticle_isBdecay);
+   virtual void     TreeFin_Init(TTree *&tree, Double_t &isMC, Double_t &lumi, Double_t &run, Double_t &evt, Double_t &puFactor, Int_t &L1_DoubleMu0er2p0_SQ_OS_dEta_Max1p6, Int_t &L1_DoubleMu0er2p0_SQ_OS_dEta_Max1p5, Int_t &L1_DoubleMu0er1p5_SQ_OS_dR_Max1p4, Int_t &L1_DoubleMu0er1p4_SQ_OS_dR_Max1p4, Int_t &L1_TripleMu_5SQ_3SQ_0_DoubleMu_5_3_SQ_OS_Mass_Max9, Int_t &L1_TripleMu_5SQ_3SQ_0OQ_DoubleMu_5_3_SQ_OS_Mass_Max9, Int_t &L1_TripleMu_2SQ_1p5SQ_0OQ_Mass_Max12, Int_t &L1_DoubleMu4_SQ_OS_dR_Max1p2, Int_t &L1_DoubleMu4p5_SQ_OS_dR_Max1p2, Int_t &L1seed, Int_t &HLTpath, Double_t &DeltaR_max, Double_t &DeltaZ_max, Double_t &Pmu3, Double_t &cLP, Double_t &tKink, Double_t &segmComp, Double_t &tripletMass, Double_t &tripletMassReso, Double_t &fv_nC, Double_t &fv_dphi3D, Double_t &fv_d3D,  Double_t &fv_d3Dsig, Double_t &d0, Double_t &d0sig, Double_t &mindca_iso, Double_t &trkRel, Double_t &Pmu1, Double_t &Ptmu1, Double_t &etamu1, Double_t &phimu1, Double_t &Pmu2, Double_t &Ptmu2, Double_t &etamu2, Double_t &phimu2, Double_t &Ptmu3, Double_t &etamu3, Double_t &phimu3, Double_t &P_trip, Double_t &Pt_trip, Double_t &eta_trip, Double_t &nStationsMu1, Double_t &nStationsMu2, Double_t &nStationsMu3, Double_t &Iso03Mu1, Double_t &Iso03Mu2, Double_t &Iso03Mu3, Double_t &Iso05Mu1, Double_t &Iso05Mu2, Double_t &Iso05Mu3, Double_t &nMatchesMu1, Double_t &nMatchesMu2, Double_t &nMatchesMu3, Double_t &timeAtIpInOutMu_sig1, Double_t &timeAtIpInOutMu_sig2, Double_t &timeAtIpInOutMu_sig3, Double_t &cQ_uS, Double_t &cQ_tK, Double_t &cQ_gK, Double_t &cQ_tRChi2, Double_t &cQ_sRChi2, Double_t &cQ_Chi2LP, Double_t &cQ_Chi2LM, Double_t &cQ_lD, Double_t &cQ_gDEP, Double_t &cQ_tM, Double_t &cQ_gTP, Double_t &calEn_emMu1, Double_t &calEn_emMu2, Double_t &calEn_emMu3, Double_t &calEn_hadMu1, Double_t &calEn_hadMu2, Double_t &calEn_hadMu3, Double_t &caloComp, Double_t &fliDistPVSV_Chi2, Double_t &isGlb1, Double_t &isTracker1, Double_t &isLoose1, Double_t &isSoft1, Double_t &isPF1, Double_t &isRPC1, Double_t &isSA1, Double_t &isCalo1, Double_t &isGlb2, Double_t &isTracker2, Double_t &isLoose2, Double_t &isSoft2, Double_t &isPF2, Double_t &isRPC2, Double_t &isSA2, Double_t &isCalo2, Double_t &isGlb3, Double_t &isTracker3, Double_t &isLoose3, Double_t &isSoft3, Double_t &isPF3, Double_t &isRPC3, Double_t &isSA3, Double_t &isCalo3, Double_t &Vx1, Double_t &Vx2, Double_t &Vx3, Double_t &Vy1, Double_t &Vy2, Double_t &Vy3, Double_t &Vz1, Double_t &Vz2, Double_t &Vz3, Double_t &RefVx1, Double_t &RefVx2, Double_t &RefVx3, Double_t &RefVy1, Double_t &RefVy2, Double_t &RefVy3, Double_t &RefVz1, Double_t &RefVz2, Double_t &RefVz3, Double_t &SVx, Double_t &SVy, Double_t &SVz, Double_t &had03, Double_t &had05, Double_t &nJets03, Double_t &nJets05, Double_t &nTracks03, Double_t &nTracks05, Double_t &sumPt03, Double_t &sumPt05, Double_t &hadVeto03, Double_t &hadVeto05, Double_t &emVeto03, Double_t &emVeto05, Double_t &trVeto03, Double_t &trVeto05, Double_t &EnMu1, Double_t &EnMu2, Double_t &EnMu3, Double_t &ChargeMu1, Double_t &ChargeMu2, Double_t &ChargeMu3, Double_t &isQValid1, Double_t &isTValid1, Double_t &isIsoValid1, Double_t &GLnormChi2_mu1, Double_t &GL_nValidMuHits1, Double_t &trkLayersWMeas1, Double_t &nValidPixelHits1, Double_t &outerTrk_P_1, Double_t &outerTrk_Eta_1, Double_t &outerTrk_normChi2_1, Double_t &outerTrk_muStValidHits_1, Double_t &innerTrk_P_1, Double_t &innerTrk_Eta_1, Double_t &innerTrk_normChi2_1, Double_t &QInnerOuter_1, Double_t &cQ_uS_1, Double_t &cQ_tK_1, Double_t &cQ_gK_1, Double_t &cQ_tRChi2_1, Double_t &cQ_sRChi2_1, Double_t &cQ_Chi2LP_1, Double_t &cQ_Chi2LM_1, Double_t &cQ_lD_1, Double_t &cQ_gDEP_1, Double_t &cQ_tM_1, Double_t &cQ_gTP_1, Double_t &segmComp_1, Double_t &caloComp_1, Double_t &isQValid2, Double_t &isTValid2, Double_t &isIsoValid2, Double_t &GLnormChi2_mu2, Double_t &GL_nValidMuHits2, Double_t &trkLayersWMeas2, Double_t &nValidPixelHits2, Double_t &outerTrk_P_2, Double_t &outerTrk_Eta_2, Double_t &outerTrk_normChi2_2, Double_t &outerTrk_muStValidHits_2, Double_t &innerTrk_P_2, Double_t &innerTrk_Eta_2, Double_t &innerTrk_normChi2_2, Double_t &QInnerOuter_2, Double_t &cQ_uS_2, Double_t &cQ_tK_2, Double_t &cQ_gK_2, Double_t &cQ_tRChi2_2, Double_t &cQ_sRChi2_2, Double_t &cQ_Chi2LP_2, Double_t &cQ_Chi2LM_2, Double_t &cQ_lD_2, Double_t &cQ_gDEP_2, Double_t &cQ_tM_2, Double_t &cQ_gTP_2, Double_t &segmComp_2, Double_t &caloComp_2, Double_t &isQValid3, Double_t &isTValid3, Double_t &isIsoValid3, Double_t &GLnormChi2_mu3, Double_t &GL_nValidMuHits3, Double_t &trkLayersWMeas3, Double_t &nValidPixelHits3, Double_t &outerTrk_P_3, Double_t &outerTrk_Eta_3, Double_t &outerTrk_normChi2_3, Double_t &outerTrk_muStValidHits_3, Double_t &innerTrk_P_3, Double_t &innerTrk_Eta_3, Double_t &innerTrk_normChi2_3, Double_t &QInnerOuter_3, Double_t &cQ_uS_3, Double_t &cQ_tK_3, Double_t &cQ_gK_3, Double_t &cQ_tRChi2_3, Double_t &cQ_sRChi2_3, Double_t &cQ_Chi2LP_3, Double_t &cQ_Chi2LM_3, Double_t &cQ_lD_3, Double_t &cQ_gDEP_3, Double_t &cQ_tM_3, Double_t &cQ_gTP_3, Double_t &segmComp_3, Double_t &caloComp_3, Double_t &GenParticle_isBdecay);
 };
 
 #endif
 
 #ifdef myAnalizer_cxx
-myAnalizer::myAnalizer(TTree *tree, TString fname) : fChain(0)
+myAnalizer_control_2022::myAnalizer_control_2022(TTree *tree, TString fname) : fChain(0)
 {
    Init(tree);
    fileName=fname;
 }
 
-myAnalizer::~myAnalizer()
+myAnalizer_control_2022::~myAnalizer_control_2022()
 {
    if (!fChain) return;
    delete fChain->GetCurrentFile();
 }
 
-Int_t myAnalizer::GetEntry(Long64_t entry)
+Int_t myAnalizer_control_2022::GetEntry(Long64_t entry)
 {
 // Read contents of entry.
    if (!fChain) return 0;
    return fChain->GetEntry(entry);
 }
-Long64_t myAnalizer::LoadTree(Long64_t entry)
+Long64_t myAnalizer_control_2022::LoadTree(Long64_t entry)
 {
 // Set the environment to read one entry
    if (!fChain) return -5;
@@ -701,7 +681,7 @@ Long64_t myAnalizer::LoadTree(Long64_t entry)
    return centry;
 }
 
-void myAnalizer::Init(TTree *tree)
+void myAnalizer_control_2022::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -723,17 +703,17 @@ void myAnalizer::Init(TTree *tree)
    GenParticle_Pt = 0;
    GenParticle_Eta = 0;
    GenParticle_Phi = 0;
-   //GenParticle_isDs = 0;
-   //GenParticle_isB = 0;
-   //GenParticle_isBdecay = 0;
+   GenParticle_isDs = 0;
+   GenParticle_isB = 0;
+   GenParticle_isBdecay = 0;
    GenParticle_MotherPdgId = 0;
    MuonPt = 0;
    MuonEnergy = 0;
    MuonCharge = 0;
    MuonEta = 0;
    MuonPhi = 0;
-   //Muon_PdgId = 0;
-   //Muon_MotherPdgId = 0;
+   Muon_PdgId = 0;
+   Muon_MotherPdgId = 0;
    Muon_simFlavour = 0;
    Muon_vx = 0;
    Muon_vy = 0;
@@ -810,24 +790,32 @@ void myAnalizer::Init(TTree *tree)
    Muon_hadVetoEt05 = 0;
    Muon_emVetoEt05 = 0;
    Muon_trackerVetoPt05 = 0;
-   //Track_pt = 0;
-   //Track_eta = 0;
-   //Track_phi = 0;
-   //Track_normalizedChi2 = 0;
-   //Track_numberOfValidHits = 0;
-   //Track_charge = 0;
-   //Track_dxy = 0;
-   //Track_dxyError = 0;
-   //Track_dz = 0;
-   //Track_dzError = 0;
-   //Track_vx = 0;
-   //Track_vy = 0;
-   //Track_vz = 0;
+//    L2Muons_pt = 0;
+//    L2Muons_eta = 0;
+//    L2Muons_phi = 0;
+//    L2Muons_charge = 0;
+//    L3Muons_pt = 0;
+//    L3Muons_eta = 0;
+//    L3Muons_phi = 0;
+//    L3Muons_charge = 0;
+   Track_pt = 0;
+   Track_eta = 0;
+   Track_phi = 0;
+   Track_normalizedChi2 = 0;
+   Track_numberOfValidHits = 0;
+   Track_charge = 0;
+   Track_dxy = 0;
+   Track_dxyError = 0;
+   Track_dz = 0;
+   Track_dzError = 0;
+   Track_vx = 0;
+   Track_vy = 0;
+   Track_vz = 0;
    Muon_validMuonHitComb = 0;
    Muon_innerTrack_ValidFraction = 0;
    Muon_Numberofvalidtrackerhits = 0;
    Muon_innerTrack_highPurity = 0;
-   //Track_pdgId = 0;
+   Track_pdgId = 0;
    PV_x = 0;
    PV_y = 0;
    PV_z = 0;
@@ -850,63 +838,63 @@ void myAnalizer::Init(TTree *tree)
    Vtx12_nDOF = 0;
    Vtx23_nDOF = 0;
    Vtx13_nDOF = 0;
-   Mu1_Pt = 0;
-   Mu1_Eta = 0;
-   Mu1_Phi = 0;
-   Mu1_dRtriggerMatch = 0;
-   Mu1_TripletIndex = 0;
+   Mu01_Pt = 0;
+   Mu01_Eta = 0;
+   Mu01_Phi = 0;
+   Mu01_dRtriggerMatch = 0;
+   Mu01_TripletIndex = 0;
    Mu1_NTracks03iso = 0;
-   Mu2_Pt = 0;
-   Mu2_Eta = 0;
-   Mu2_Phi = 0;
-   Mu2_dRtriggerMatch = 0;
-   Mu2_TripletIndex = 0;
+   Mu02_Pt = 0;
+   Mu02_Eta = 0;
+   Mu02_Phi = 0;
+   Mu02_dRtriggerMatch = 0;
+   Mu02_TripletIndex = 0;
    Mu2_NTracks03iso = 0;
-   Mu3_Pt = 0;
-   Mu3_Eta = 0;
-   Mu3_Phi = 0;
-   Mu3_dRtriggerMatch = 0;
-   Mu3_TripletIndex = 0;
-   Mu3_NTracks03iso = 0;
-   //selectedTripletsIndex = 0;
-   GenMatchMu1_SimPt = 0;
-   GenMatchMu2_SimPt = 0;
-   GenMatchMu1_SimEta = 0;
-   GenMatchMu2_SimEta = 0;
-   GenMatchMu1_SimPhi = 0;
-   GenMatchMu2_SimPhi = 0;
-   GenMatchMu1_Pt = 0;
-   GenMatchMu2_Pt = 0;
-   GenMatchMu1_Eta = 0;
-   GenMatchMu2_Eta = 0;
-   GenMatchMu1_Phi = 0;
-   GenMatchMu2_Phi = 0;
+   Tr_Pt = 0;
+   Tr_Eta = 0;
+   Tr_Phi = 0;
+   Tr_dRtriggerMatch = 0;
+   Tr_TripletIndex = 0;
+   Tr_NTracks03iso = 0;
+   selectedTripletsIndex = 0;
+   GenMatchMu01_SimPt = 0;
+   GenMatchMu02_SimPt = 0;
+   GenMatchMu01_SimEta = 0;
+   GenMatchMu02_SimEta = 0;
+   GenMatchMu01_SimPhi = 0;
+   GenMatchMu02_SimPhi = 0;
+   GenMatchMu01_Pt = 0;
+   GenMatchMu02_Pt = 0;
+   GenMatchMu01_Eta = 0;
+   GenMatchMu02_Eta = 0;
+   GenMatchMu01_Phi = 0;
+   GenMatchMu02_Phi = 0;
    Triplet_mindca_iso = 0;
    Triplet_relativeiso = 0;
    Triplet_relativeiso2 = 0;
-   TripletVtx_x = 0;
-   TripletVtx_y = 0;
-   TripletVtx_z = 0;
-   TripletVtx_Chi2 = 0;
-   TripletVtx_NDOF = 0;
-   Triplet_Mass = 0;
-   Triplet_Pt = 0;
-   Triplet_Eta = 0;
-   Triplet_Phi = 0;
-   Triplet_Charge = 0;
-   RefittedPV_x = 0;
-   RefittedPV_y = 0;
-   RefittedPV_z = 0;
-   RefittedPV_NTracks = 0;
-   RefittedPV_isValid = 0;
+   TripletVtx2_x = 0;
+   TripletVtx2_y = 0;
+   TripletVtx2_z = 0;
+   TripletVtx2_Chi2 = 0;
+   TripletVtx2_NDOF = 0;
+   Triplet2_Mass = 0;
+   Triplet2_Pt = 0;
+   Triplet2_Eta = 0;
+   Triplet2_Phi = 0;
+   Triplet2_Charge = 0;
+   RefittedPV2_x = 0;
+   RefittedPV2_y = 0;
+   RefittedPV2_z = 0;
+   RefittedPV2_NTracks = 0;
+   RefittedPV2_isValid = 0;
    RefittedPV_Chi2 = 0;
    RefittedPV_nDOF = 0;
    PV_bis_Chi2 = 0;
    PV_bis_nDOF = 0;
-   FlightDistPVSV = 0;
-   FlightDistPVSV_Err = 0;
-   FlightDistPVSV_Significance = 0;
-   FlightDistPVSV_chi2 = 0;
+   FlightDistPVSV2 = 0;
+   FlightDistPVSV2_Err = 0;
+   FlightDistPVSV2_Significance = 0;
+   FlightDistPVSV2_chi2 = 0;
    dxy_mu1 = 0;
    dxy_mu2 = 0;
    dxy_mu3 = 0;
@@ -971,44 +959,24 @@ void myAnalizer::Init(TTree *tree)
     MuonPt_HLT_DiMu_Incl_displ= 0;
     MuonEta_HLT_DiMu_Incl_displ= 0;
     MuonPhi_HLT_DiMu_Incl_displ= 0;
-   //MuonPt_HLT_Dimuon = 0;
-   //MuonEta_HLT_Dimuon = 0;
-   //MuonPhi_HLT_Dimuon = 0;
+   MuonPt_HLT_Dimuon = 0;
+   MuonEta_HLT_Dimuon = 0;
+   MuonPhi_HLT_Dimuon = 0;
    MuonPt_HLT = 0;
    MuonEta_HLT = 0;
    MuonPhi_HLT = 0;
-    
-    // new L1 branches
-    L1Muon_BX = 0;
-    L1Muon_Charge = 0;
-    L1Muon_Eta = 0;
-    L1Muon_Pt = 0;
-    L1Muon_Phi = 0;
-    L1Muon_Quality = 0;
-    L1Muon_EtaAtVtx = 0;
-    L1Muon_PhiAtVtx = 0;
-
-    
-    Muon_combinedQuality_match1_dX = 0;
-    Muon_combinedQuality_match1_pullX = 0;
-    Muon_combinedQuality_match1_pullDxDz = 0;
-    Muon_combinedQuality_match1_dY = 0;
-    Muon_combinedQuality_match1_pullY = 0;
-    Muon_combinedQuality_match1_pullDyDz = 0;
-    Muon_combinedQuality_match2_dX = 0;
-    Muon_combinedQuality_match2_pullX = 0;
-    Muon_combinedQuality_match2_pullDxDz = 0;
-    Muon_combinedQuality_match2_dY = 0;
-    Muon_combinedQuality_match2_pullY = 0;
-    Muon_combinedQuality_match2_pullDyDz = 0;
-
-
-
-    //MVASoft1 = 0;
-    //MVASoft2 = 0;
-    //MVASoft3 = 0;
-    
-    //d0sig_max = 0;    
+    L1Muon_Pt= 0;
+    L1Muon_Eta= 0;
+    L1Muon_Phi= 0;
+    L1Muon_EtaAtVtx= 0;
+    L1Muon_PhiAtVtx= 0;
+    L1Muon_BX= 0;
+    L1Muon_Quality= 0;
+    L1Muon_Charge= 0;
+    L1Muon_ChargeValid= 0;
+    L1Muon_TfMuonIndex= 0;
+    L1Muon_rank= 0;
+    L1Muon_isoSum= 0;
     
    // Set branch addresses and branch pointers
    if (!tree) return;
@@ -1022,8 +990,8 @@ void myAnalizer::Init(TTree *tree)
    fChain->SetBranchAddress("NGoodTriplets", &NGoodTriplets, &b_NGoodTriplets);
    fChain->SetBranchAddress("nPileUpInt", &nPileUpInt, &b_nPileUpInt);
    fChain->SetBranchAddress("Trigger_l1name", &Trigger_l1name, &b_Trigger_l1name);
-   fChain->SetBranchAddress("Trigger_l1Initialdecision", &Trigger_l1Initialdecision, &b_Trigger_l1Initialdecision);
    fChain->SetBranchAddress("Trigger_l1Finaldecision", &Trigger_l1Finaldecision, &b_Trigger_l1Finaldecision);
+   fChain->SetBranchAddress("Trigger_l1Initialdecision", &Trigger_l1Initialdecision, &b_Trigger_l1Initialdecision);
    fChain->SetBranchAddress("Trigger_l1prescale", &Trigger_l1prescale, &b_Trigger_l1prescale);
    fChain->SetBranchAddress("Trigger_hltname", &Trigger_hltname, &b_Trigger_hltname);
    fChain->SetBranchAddress("Trigger_hltdecision", &Trigger_hltdecision, &b_Trigger_hltdecision);
@@ -1031,18 +999,18 @@ void myAnalizer::Init(TTree *tree)
    fChain->SetBranchAddress("GenParticle_Pt", &GenParticle_Pt, &b_GenParticle_Pt);
    fChain->SetBranchAddress("GenParticle_Eta", &GenParticle_Eta, &b_GenParticle_Eta);
    fChain->SetBranchAddress("GenParticle_Phi", &GenParticle_Phi, &b_GenParticle_Phi);
-   //fChain->SetBranchAddress("GenParticle_isDs", &GenParticle_isDs, &b_GenParticle_isDs);
-   //fChain->SetBranchAddress("GenParticle_isB", &GenParticle_isB, &b_GenParticle_isB);
-   //fChain->SetBranchAddress("GenParticle_isBdecay", &GenParticle_isBdecay, &b_GenParticle_isBdecay);
-   //fChain->SetBranchAddress("GenParticle_MotherPdgId", &GenParticle_MotherPdgId, &b_GenParticle_MotherPdgId);
+   fChain->SetBranchAddress("GenParticle_isDs", &GenParticle_isDs, &b_GenParticle_isDs);
+   fChain->SetBranchAddress("GenParticle_isB", &GenParticle_isB, &b_GenParticle_isB);
+   fChain->SetBranchAddress("GenParticle_isBdecay", &GenParticle_isBdecay, &b_GenParticle_isBdecay);
+   fChain->SetBranchAddress("GenParticle_MotherPdgId", &GenParticle_MotherPdgId, &b_GenParticle_MotherPdgId);
    fChain->SetBranchAddress("MuonCollectionSize", &MuonCollectionSize, &b_MuonCollectionSize);
    fChain->SetBranchAddress("MuonPt", &MuonPt, &b_MuonPt);
    fChain->SetBranchAddress("MuonEnergy", &MuonEnergy, &b_MuonEnergy);
    fChain->SetBranchAddress("MuonCharge", &MuonCharge, &b_MuonCharge);
    fChain->SetBranchAddress("MuonEta", &MuonEta, &b_MuonEta);
    fChain->SetBranchAddress("MuonPhi", &MuonPhi, &b_MuonPhi);
-   //fChain->SetBranchAddress("Muon_PdgId", &Muon_PdgId, &b_Muon_PdgId);
-   //fChain->SetBranchAddress("Muon_MotherPdgId", &Muon_MotherPdgId, &b_Muon_MotherPdgId);
+   fChain->SetBranchAddress("Muon_PdgId", &Muon_PdgId, &b_Muon_PdgId);
+   fChain->SetBranchAddress("Muon_MotherPdgId", &Muon_MotherPdgId, &b_Muon_MotherPdgId);
    fChain->SetBranchAddress("Muon_simFlavour", &Muon_simFlavour, &b_Muon_simFlavour);
    fChain->SetBranchAddress("Muon_vx", &Muon_vx, &b_Muon_vx);
    fChain->SetBranchAddress("Muon_vy", &Muon_vy, &b_Muon_vy);
@@ -1119,25 +1087,33 @@ void myAnalizer::Init(TTree *tree)
    fChain->SetBranchAddress("Muon_hadVetoEt05", &Muon_hadVetoEt05, &b_Muon_hadVetoEt05);
    fChain->SetBranchAddress("Muon_emVetoEt05", &Muon_emVetoEt05, &b_Muon_emVetoEt05);
    fChain->SetBranchAddress("Muon_trackerVetoPt05", &Muon_trackerVetoPt05, &b_Muon_trackerVetoPt05);
-   //fChain->SetBranchAddress("Track_pt", &Track_pt, &b_Track_pt);
-   //fChain->SetBranchAddress("Track_eta", &Track_eta, &b_Track_eta);
-   //fChain->SetBranchAddress("Track_phi", &Track_phi, &b_Track_phi);
-   //fChain->SetBranchAddress("Track_normalizedChi2", &Track_normalizedChi2, &b_Track_normalizedChi2);
-   //fChain->SetBranchAddress("Track_numberOfValidHits", &Track_numberOfValidHits, &b_Track_numberOfValidHits);
-   //fChain->SetBranchAddress("Track_charge", &Track_charge, &b_Track_charge);
-   //fChain->SetBranchAddress("Track_dxy", &Track_dxy, &b_Track_dxy);
-   //fChain->SetBranchAddress("Track_dxyError", &Track_dxyError, &b_Track_dxyError);
-   //fChain->SetBranchAddress("Track_dz", &Track_dz, &b_Track_dz);
-   //fChain->SetBranchAddress("Track_dzError", &Track_dzError, &b_Track_dzError);
-   //fChain->SetBranchAddress("Track_vx", &Track_vx, &b_Track_vx);
-   //fChain->SetBranchAddress("Track_vy", &Track_vy, &b_Track_vy);
-   //fChain->SetBranchAddress("Track_vz", &Track_vz, &b_Track_vz);
+//    fChain->SetBranchAddress("L2Muons_pt", &L2Muons_pt, &b_L2Muons_pt);
+//    fChain->SetBranchAddress("L2Muons_eta", &L2Muons_eta, &b_L2Muons_eta);
+//    fChain->SetBranchAddress("L2Muons_phi", &L2Muons_phi, &b_L2Muons_phi);
+//    fChain->SetBranchAddress("L2Muons_charge", &L2Muons_charge, &b_L2Muons_charge);
+//    fChain->SetBranchAddress("L3Muons_pt", &L3Muons_pt, &b_L3Muons_pt);
+//    fChain->SetBranchAddress("L3Muons_eta", &L3Muons_eta, &b_L3Muons_eta);
+//    fChain->SetBranchAddress("L3Muons_phi", &L3Muons_phi, &b_L3Muons_phi);
+//    fChain->SetBranchAddress("L3Muons_charge", &L3Muons_charge, &b_L3Muons_charge);
+    fChain->SetBranchAddress("Track_pt", &Track_pt, &b_Track_pt);
+   fChain->SetBranchAddress("Track_eta", &Track_eta, &b_Track_eta);
+   fChain->SetBranchAddress("Track_phi", &Track_phi, &b_Track_phi);
+   fChain->SetBranchAddress("Track_normalizedChi2", &Track_normalizedChi2, &b_Track_normalizedChi2);
+   fChain->SetBranchAddress("Track_numberOfValidHits", &Track_numberOfValidHits, &b_Track_numberOfValidHits);
+   fChain->SetBranchAddress("Track_charge", &Track_charge, &b_Track_charge);
+   fChain->SetBranchAddress("Track_dxy", &Track_dxy, &b_Track_dxy);
+   fChain->SetBranchAddress("Track_dxyError", &Track_dxyError, &b_Track_dxyError);
+   fChain->SetBranchAddress("Track_dz", &Track_dz, &b_Track_dz);
+   fChain->SetBranchAddress("Track_dzError", &Track_dzError, &b_Track_dzError);
+   fChain->SetBranchAddress("Track_vx", &Track_vx, &b_Track_vx);
+   fChain->SetBranchAddress("Track_vy", &Track_vy, &b_Track_vy);
+   fChain->SetBranchAddress("Track_vz", &Track_vz, &b_Track_vz);
    fChain->SetBranchAddress("Muon_validMuonHitComb", &Muon_validMuonHitComb, &b_Muon_validMuonHitComb);
    fChain->SetBranchAddress("Muon_innerTrack_ValidFraction", &Muon_innerTrack_ValidFraction, &b_Muon_innerTrack_ValidFraction);
    fChain->SetBranchAddress("Muon_Numberofvalidtrackerhits", &Muon_Numberofvalidtrackerhits, &b_Muon_Numberofvalidtrackerhits);
    fChain->SetBranchAddress("Muon_innerTrack_highPurity", &Muon_innerTrack_highPurity, &b_Muon_innerTrack_highPurity);
-   //fChain->SetBranchAddress("Track_pdgId", &Track_pdgId, &b_Track_pdgId);
-   fChain->SetBranchAddress("TripletCollectionSize", &TripletCollectionSize, &b_TripletCollectionSize);
+   fChain->SetBranchAddress("Track_pdgId", &Track_pdgId, &b_Track_pdgId);
+   fChain->SetBranchAddress("TripletCollectionSize2", &TripletCollectionSize2, &b_TripletCollectionSize2);
    fChain->SetBranchAddress("PVCollection_Size", &PVCollection_Size, &b_PVCollection_Size);
    fChain->SetBranchAddress("PV_x", &PV_x, &b_PV_x);
    fChain->SetBranchAddress("PV_y", &PV_y, &b_PV_y);
@@ -1161,64 +1137,64 @@ void myAnalizer::Init(TTree *tree)
    fChain->SetBranchAddress("Vtx12_nDOF", &Vtx12_nDOF, &b_Vtx12_nDOF);
    fChain->SetBranchAddress("Vtx23_nDOF", &Vtx23_nDOF, &b_Vtx23_nDOF);
    fChain->SetBranchAddress("Vtx13_nDOF", &Vtx13_nDOF, &b_Vtx13_nDOF);
-   //fChain->SetBranchAddress("SelectedTripletsSize", &SelectedTripletsSize, &b_SelectedTripletsSize);
-   fChain->SetBranchAddress("Mu1_Pt", &Mu1_Pt, &b_Mu1_Pt);
-   fChain->SetBranchAddress("Mu1_Eta", &Mu1_Eta, &b_Mu1_Eta);
-   fChain->SetBranchAddress("Mu1_Phi", &Mu1_Phi, &b_Mu1_Phi);
-   fChain->SetBranchAddress("Mu1_dRtriggerMatch", &Mu1_dRtriggerMatch, &b_Mu1_dRtriggerMatch);
-   fChain->SetBranchAddress("Mu1_TripletIndex", &Mu1_TripletIndex, &b_Mu1_TripletIndex);
+   fChain->SetBranchAddress("SelectedTripletsSize", &SelectedTripletsSize, &b_SelectedTripletsSize);
+   fChain->SetBranchAddress("Mu01_Pt", &Mu01_Pt, &b_Mu01_Pt);
+   fChain->SetBranchAddress("Mu01_Eta", &Mu01_Eta, &b_Mu01_Eta);
+   fChain->SetBranchAddress("Mu01_Phi", &Mu01_Phi, &b_Mu01_Phi);
+   fChain->SetBranchAddress("Mu01_dRtriggerMatch", &Mu01_dRtriggerMatch, &b_Mu01_dRtriggerMatch);
+   fChain->SetBranchAddress("Mu01_TripletIndex", &Mu01_TripletIndex, &b_Mu01_TripletIndex);
    fChain->SetBranchAddress("Mu1_NTracks03iso", &Mu1_NTracks03iso, &b_Mu1_NTracks03iso);
-   fChain->SetBranchAddress("Mu2_Pt", &Mu2_Pt, &b_Mu2_Pt);
-   fChain->SetBranchAddress("Mu2_Eta", &Mu2_Eta, &b_Mu2_Eta);
-   fChain->SetBranchAddress("Mu2_Phi", &Mu2_Phi, &b_Mu2_Phi);
-   fChain->SetBranchAddress("Mu2_dRtriggerMatch", &Mu2_dRtriggerMatch, &b_Mu2_dRtriggerMatch);
-   fChain->SetBranchAddress("Mu2_TripletIndex", &Mu2_TripletIndex, &b_Mu2_TripletIndex);
+   fChain->SetBranchAddress("Mu02_Pt", &Mu02_Pt, &b_Mu02_Pt);
+   fChain->SetBranchAddress("Mu02_Eta", &Mu02_Eta, &b_Mu02_Eta);
+   fChain->SetBranchAddress("Mu02_Phi", &Mu02_Phi, &b_Mu02_Phi);
+   fChain->SetBranchAddress("Mu02_dRtriggerMatch", &Mu02_dRtriggerMatch, &b_Mu02_dRtriggerMatch);
+   fChain->SetBranchAddress("Mu02_TripletIndex", &Mu02_TripletIndex, &b_Mu02_TripletIndex);
    fChain->SetBranchAddress("Mu2_NTracks03iso", &Mu2_NTracks03iso, &b_Mu2_NTracks03iso);
-   fChain->SetBranchAddress("Mu3_Pt", &Mu3_Pt, &b_Mu3_Pt);
-   fChain->SetBranchAddress("Mu3_Eta", &Mu3_Eta, &b_Mu3_Eta);
-   fChain->SetBranchAddress("Mu3_Phi", &Mu3_Phi, &b_Mu3_Phi);
-   fChain->SetBranchAddress("Mu3_dRtriggerMatch", &Mu3_dRtriggerMatch, &b_Mu3_dRtriggerMatch);
-   fChain->SetBranchAddress("Mu3_TripletIndex", &Mu3_TripletIndex, &b_Mu3_TripletIndex);
-   fChain->SetBranchAddress("Mu3_NTracks03iso", &Mu3_NTracks03iso, &b_Mu3_NTracks03iso);
-   //fChain->SetBranchAddress("selectedTripletsIndex", &selectedTripletsIndex, &b_selectedTripletsIndex);
-   fChain->SetBranchAddress("GenMatchMu1_SimPt", &GenMatchMu1_SimPt, &b_GenMatchMu1_SimPt);
-   fChain->SetBranchAddress("GenMatchMu2_SimPt", &GenMatchMu2_SimPt, &b_GenMatchMu2_SimPt);
-   fChain->SetBranchAddress("GenMatchMu1_SimEta", &GenMatchMu1_SimEta, &b_GenMatchMu1_SimEta);
-   fChain->SetBranchAddress("GenMatchMu2_SimEta", &GenMatchMu2_SimEta, &b_GenMatchMu2_SimEta);
-   fChain->SetBranchAddress("GenMatchMu1_SimPhi", &GenMatchMu1_SimPhi, &b_GenMatchMu1_SimPhi);
-   fChain->SetBranchAddress("GenMatchMu2_SimPhi", &GenMatchMu2_SimPhi, &b_GenMatchMu2_SimPhi);
-   fChain->SetBranchAddress("GenMatchMu1_Pt", &GenMatchMu1_Pt, &b_GenMatchMu1_Pt);
-   fChain->SetBranchAddress("GenMatchMu2_Pt", &GenMatchMu2_Pt, &b_GenMatchMu2_Pt);
-   fChain->SetBranchAddress("GenMatchMu1_Eta", &GenMatchMu1_Eta, &b_GenMatchMu1_Eta);
-   fChain->SetBranchAddress("GenMatchMu2_Eta", &GenMatchMu2_Eta, &b_GenMatchMu2_Eta);
-   fChain->SetBranchAddress("GenMatchMu1_Phi", &GenMatchMu1_Phi, &b_GenMatchMu1_Phi);
-   fChain->SetBranchAddress("GenMatchMu2_Phi", &GenMatchMu2_Phi, &b_GenMatchMu2_Phi);
+   fChain->SetBranchAddress("Tr_Pt", &Tr_Pt, &b_Tr_Pt);
+   fChain->SetBranchAddress("Tr_Eta", &Tr_Eta, &b_Tr_Eta);
+   fChain->SetBranchAddress("Tr_Phi", &Tr_Phi, &b_Tr_Phi);
+   fChain->SetBranchAddress("Tr_dRtriggerMatch", &Tr_dRtriggerMatch, &b_Tr_dRtriggerMatch);
+   fChain->SetBranchAddress("Tr_TripletIndex", &Tr_TripletIndex, &b_Tr_TripletIndex);
+   fChain->SetBranchAddress("Tr_NTracks03iso", &Tr_NTracks03iso, &b_Tr_NTracks03iso);
+   fChain->SetBranchAddress("selectedTripletsIndex", &selectedTripletsIndex, &b_selectedTripletsIndex);
+   fChain->SetBranchAddress("GenMatchMu01_SimPt", &GenMatchMu01_SimPt, &b_GenMatchMu01_SimPt);
+   fChain->SetBranchAddress("GenMatchMu02_SimPt", &GenMatchMu02_SimPt, &b_GenMatchMu02_SimPt);
+   fChain->SetBranchAddress("GenMatchMu01_SimEta", &GenMatchMu01_SimEta, &b_GenMatchMu01_SimEta);
+   fChain->SetBranchAddress("GenMatchMu02_SimEta", &GenMatchMu02_SimEta, &b_GenMatchMu02_SimEta);
+   fChain->SetBranchAddress("GenMatchMu01_SimPhi", &GenMatchMu01_SimPhi, &b_GenMatchMu01_SimPhi);
+   fChain->SetBranchAddress("GenMatchMu02_SimPhi", &GenMatchMu02_SimPhi, &b_GenMatchMu02_SimPhi);
+   fChain->SetBranchAddress("GenMatchMu01_Pt", &GenMatchMu01_Pt, &b_GenMatchMu01_Pt);
+   fChain->SetBranchAddress("GenMatchMu02_Pt", &GenMatchMu02_Pt, &b_GenMatchMu02_Pt);
+   fChain->SetBranchAddress("GenMatchMu01_Eta", &GenMatchMu01_Eta, &b_GenMatchMu01_Eta);
+   fChain->SetBranchAddress("GenMatchMu02_Eta", &GenMatchMu02_Eta, &b_GenMatchMu02_Eta);
+   fChain->SetBranchAddress("GenMatchMu01_Phi", &GenMatchMu01_Phi, &b_GenMatchMu01_Phi);
+   fChain->SetBranchAddress("GenMatchMu02_Phi", &GenMatchMu02_Phi, &b_GenMatchMu02_Phi);
    fChain->SetBranchAddress("Triplet_mindca_iso", &Triplet_mindca_iso, &b_Triplet_mindca_iso);
    fChain->SetBranchAddress("Triplet_relativeiso", &Triplet_relativeiso, &b_Triplet_relativeiso);
    fChain->SetBranchAddress("Triplet_relativeiso2", &Triplet_relativeiso2, &b_Triplet_relativeiso2);
-   fChain->SetBranchAddress("TripletVtx_x", &TripletVtx_x, &b_TripletVtx_x);
-   fChain->SetBranchAddress("TripletVtx_y", &TripletVtx_y, &b_TripletVtx_y);
-   fChain->SetBranchAddress("TripletVtx_z", &TripletVtx_z, &b_TripletVtx_z);
-   fChain->SetBranchAddress("TripletVtx_Chi2", &TripletVtx_Chi2, &b_TripletVtx_Chi2);
-   fChain->SetBranchAddress("TripletVtx_NDOF", &TripletVtx_NDOF, &b_TripletVtx_NDOF);
-   fChain->SetBranchAddress("Triplet_Mass", &Triplet_Mass, &b_Triplet_Mass);
-   fChain->SetBranchAddress("Triplet_Pt", &Triplet_Pt, &b_Triplet_Pt);
-   fChain->SetBranchAddress("Triplet_Eta", &Triplet_Eta, &b_Triplet_Eta);
-   fChain->SetBranchAddress("Triplet_Phi", &Triplet_Phi, &b_Triplet_Phi);
-   fChain->SetBranchAddress("Triplet_Charge", &Triplet_Charge, &b_Triplet_Charge);
-   fChain->SetBranchAddress("RefittedPV_x", &RefittedPV_x, &b_RefittedPV_x);
-   fChain->SetBranchAddress("RefittedPV_y", &RefittedPV_y, &b_RefittedPV_y);
-   fChain->SetBranchAddress("RefittedPV_z", &RefittedPV_z, &b_RefittedPV_z);
-   fChain->SetBranchAddress("RefittedPV_NTracks", &RefittedPV_NTracks, &b_RefittedPV_NTracks);
-   fChain->SetBranchAddress("RefittedPV_isValid", &RefittedPV_isValid, &b_RefittedPV_isValid);
+   fChain->SetBranchAddress("TripletVtx2_x", &TripletVtx2_x, &b_TripletVtx2_x);
+   fChain->SetBranchAddress("TripletVtx2_y", &TripletVtx2_y, &b_TripletVtx2_y);
+   fChain->SetBranchAddress("TripletVtx2_z", &TripletVtx2_z, &b_TripletVtx2_z);
+   fChain->SetBranchAddress("TripletVtx2_Chi2", &TripletVtx2_Chi2, &b_TripletVtx2_Chi2);
+   fChain->SetBranchAddress("TripletVtx2_NDOF", &TripletVtx2_NDOF, &b_TripletVtx2_NDOF);
+   fChain->SetBranchAddress("Triplet2_Mass", &Triplet2_Mass, &b_Triplet2_Mass);
+   fChain->SetBranchAddress("Triplet2_Pt", &Triplet2_Pt, &b_Triplet2_Pt);
+   fChain->SetBranchAddress("Triplet2_Eta", &Triplet2_Eta, &b_Triplet2_Eta);
+   fChain->SetBranchAddress("Triplet2_Phi", &Triplet2_Phi, &b_Triplet2_Phi);
+   fChain->SetBranchAddress("Triplet2_Charge", &Triplet2_Charge, &b_Triplet2_Charge);
+   fChain->SetBranchAddress("RefittedPV2_x", &RefittedPV2_x, &b_RefittedPV2_x);
+   fChain->SetBranchAddress("RefittedPV2_y", &RefittedPV2_y, &b_RefittedPV2_y);
+   fChain->SetBranchAddress("RefittedPV2_z", &RefittedPV2_z, &b_RefittedPV2_z);
+   fChain->SetBranchAddress("RefittedPV2_NTracks", &RefittedPV2_NTracks, &b_RefittedPV2_NTracks);
+   fChain->SetBranchAddress("RefittedPV2_isValid", &RefittedPV2_isValid, &b_RefittedPV2_isValid);
    fChain->SetBranchAddress("RefittedPV_Chi2", &RefittedPV_Chi2, &b_RefittedPV_Chi2);
    fChain->SetBranchAddress("RefittedPV_nDOF", &RefittedPV_nDOF, &b_RefittedPV_nDOF);
    fChain->SetBranchAddress("PV_bis_Chi2", &PV_bis_Chi2, &b_PV_bis_Chi2);
    fChain->SetBranchAddress("PV_bis_nDOF", &PV_bis_nDOF, &b_PV_bis_nDOF);
-   fChain->SetBranchAddress("FlightDistPVSV", &FlightDistPVSV, &b_FlightDistPVSV);
-   fChain->SetBranchAddress("FlightDistPVSV_Err", &FlightDistPVSV_Err, &b_FlightDistPVSV_Err);
-   fChain->SetBranchAddress("FlightDistPVSV_Significance", &FlightDistPVSV_Significance, &b_FlightDistPVSV_Significance);
-   fChain->SetBranchAddress("FlightDistPVSV_chi2", &FlightDistPVSV_chi2, &b_FlightDistPVSV_chi2);
+   fChain->SetBranchAddress("FlightDistPVSV2", &FlightDistPVSV2, &b_FlightDistPVSV2);
+   fChain->SetBranchAddress("FlightDistPVSV2_Err", &FlightDistPVSV2_Err, &b_FlightDistPVSV2_Err);
+   fChain->SetBranchAddress("FlightDistPVSV2_Significance", &FlightDistPVSV2_Significance, &b_FlightDistPVSV2_Significance);
+   fChain->SetBranchAddress("FlightDistPVSV2_chi2", &FlightDistPVSV2_chi2, &b_FlightDistPVSV2_chi2);
    fChain->SetBranchAddress("dxy_mu1", &dxy_mu1, &b_dxy_mu1);
    fChain->SetBranchAddress("dxy_mu2", &dxy_mu2, &b_dxy_mu2);
    fChain->SetBranchAddress("dxy_mu3", &dxy_mu3, &b_dxy_mu3);
@@ -1283,47 +1259,29 @@ void myAnalizer::Init(TTree *tree)
     fChain->SetBranchAddress("MuonPt_HLT_DiMu_Incl_displ", &MuonPt_HLT_DiMu_Incl_displ, &b_MuonPt_HLT_DiMu_Incl_displ);
     fChain->SetBranchAddress("MuonEta_HLT_DiMu_Incl_displ", &MuonEta_HLT_DiMu_Incl_displ, &b_MuonEta_HLT_DiMu_Incl_displ);
     fChain->SetBranchAddress("MuonPhi_HLT_DiMu_Incl_displ", &MuonPhi_HLT_DiMu_Incl_displ, &b_MuonPhi_HLT_DiMu_Incl_displ);
-   //fChain->SetBranchAddress("MuonPt_HLT_Dimuon", &MuonPt_HLT_Dimuon, &b_MuonPt_HLT_Dimuon);
-   //fChain->SetBranchAddress("MuonEta_HLT_Dimuon", &MuonEta_HLT_Dimuon, &b_MuonEta_HLT_Dimuon);
-   //fChain->SetBranchAddress("MuonPhi_HLT_Dimuon", &MuonPhi_HLT_Dimuon, &b_MuonPhi_HLT_Dimuon);
+   fChain->SetBranchAddress("MuonPt_HLT_Dimuon", &MuonPt_HLT_Dimuon, &b_MuonPt_HLT_Dimuon);
+   fChain->SetBranchAddress("MuonEta_HLT_Dimuon", &MuonEta_HLT_Dimuon, &b_MuonEta_HLT_Dimuon);
+   fChain->SetBranchAddress("MuonPhi_HLT_Dimuon", &MuonPhi_HLT_Dimuon, &b_MuonPhi_HLT_Dimuon);
    fChain->SetBranchAddress("MuonPt_HLT", &MuonPt_HLT, &b_MuonPt_HLT);
    fChain->SetBranchAddress("MuonEta_HLT", &MuonEta_HLT, &b_MuonEta_HLT);
    fChain->SetBranchAddress("MuonPhi_HLT", &MuonPhi_HLT, &b_MuonPhi_HLT);
-    // new L1 branches
-    fChain->SetBranchAddress("L1Muon_BX", &L1Muon_BX, &b_L1Muon_BX);
-    fChain->SetBranchAddress("L1Muon_Charge", &L1Muon_Charge, &b_L1Muon_Charge);
-    fChain->SetBranchAddress("L1Muon_Eta", &L1Muon_Eta, &b_L1Muon_Eta);
     fChain->SetBranchAddress("L1Muon_Pt", &L1Muon_Pt, &b_L1Muon_Pt);
+    fChain->SetBranchAddress("L1Muon_Eta", &L1Muon_Eta, &b_L1Muon_Eta);
     fChain->SetBranchAddress("L1Muon_Phi", &L1Muon_Phi, &b_L1Muon_Phi);
-    fChain->SetBranchAddress("L1Muon_Quality", &L1Muon_Quality, &b_L1Muon_Quality);
     fChain->SetBranchAddress("L1Muon_EtaAtVtx", &L1Muon_EtaAtVtx, &b_L1Muon_EtaAtVtx);
     fChain->SetBranchAddress("L1Muon_PhiAtVtx", &L1Muon_PhiAtVtx, &b_L1Muon_PhiAtVtx);
-
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_dX", &Muon_combinedQuality_match1_dX, &b_Muon_combinedQuality_match1_dX);
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_pullX", &Muon_combinedQuality_match1_pullX, &b_Muon_combinedQuality_match1_pullX);
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_pullDxDz", &Muon_combinedQuality_match1_pullDxDz, &b_Muon_combinedQuality_match1_pullDxDz);
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_dY", &Muon_combinedQuality_match1_dY, &b_Muon_combinedQuality_match1_dY);
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_pullY", &Muon_combinedQuality_match1_pullY, &b_Muon_combinedQuality_match1_pullY);
-    fChain->SetBranchAddress("Muon_combinedQuality_match1_pullDyDz", &Muon_combinedQuality_match1_pullDyDz, &b_Muon_combinedQuality_match1_pullDyDz);
-
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_dX", &Muon_combinedQuality_match2_dX, &b_Muon_combinedQuality_match2_dX);
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_pullX", &Muon_combinedQuality_match2_pullX, &b_Muon_combinedQuality_match2_pullX);
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_pullDxDz", &Muon_combinedQuality_match2_pullDxDz, &b_Muon_combinedQuality_match2_pullDxDz);
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_dY", &Muon_combinedQuality_match2_dY, &b_Muon_combinedQuality_match2_dY);
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_pullY", &Muon_combinedQuality_match2_pullY, &b_Muon_combinedQuality_match2_pullY);
-    fChain->SetBranchAddress("Muon_combinedQuality_match2_pullDyDz", &Muon_combinedQuality_match2_pullDyDz, &b_Muon_combinedQuality_match2_pullDyDz);
-
-
-    //fChain->SetBranchAddress("MVASoft1", &MVASoft1, &b_MVASoft1);
-    //fChain->SetBranchAddress("MVASoft2", &MVASoft1, &b_MVASoft2);
-    //fChain->SetBranchAddress("MVASoft3", &MVASoft1, &b_MVASoft3);
-    
-    //fChain->SetBranchAddress("d0sig_max", &d0sig_max, &b_d0sig_max);
+    fChain->SetBranchAddress("L1Muon_BX", &L1Muon_BX, &b_L1Muon_BX);
+    fChain->SetBranchAddress("L1Muon_Quality", &L1Muon_Quality, &b_L1Muon_Quality);
+    fChain->SetBranchAddress("L1Muon_Charge", &L1Muon_Charge, &b_L1Muon_Charge);
+    fChain->SetBranchAddress("L1Muon_ChargeValid", &L1Muon_ChargeValid, &b_L1Muon_ChargeValid);
+    fChain->SetBranchAddress("L1Muon_TfMuonIndex", &L1Muon_TfMuonIndex, &b_L1Muon_TfMuonIndex);
+    fChain->SetBranchAddress("L1Muon_rank", &L1Muon_rank, &b_L1Muon_rank);
+    fChain->SetBranchAddress("L1Muon_isoSum", &L1Muon_isoSum, &b_L1Muon_isoSum);
 
    Notify();
 }
 
-Bool_t myAnalizer::Notify()
+Bool_t myAnalizer_control_2022::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -1334,18 +1292,18 @@ Bool_t myAnalizer::Notify()
    return kTRUE;
 }
 
-void myAnalizer::Show(Long64_t entry)
+void myAnalizer_control_2022::Show(Long64_t entry)
 {
 // Print contents of entry.
 // If entry is not specified, print current entry
    if (!fChain) return;
    fChain->Show(entry);
 }
-Int_t myAnalizer::Cut(Long64_t entry)
+Int_t myAnalizer_control_2022::Cut(Long64_t entry)
 {
 // This function may be called from Loop.
 // returns  1 if entry is accepted.
 // returns -1 otherwise.
    return 1;
 }
-#endif // #ifdef myAnalizer_cxx
+#endif // #ifdef myAnalizer_2022_cxx

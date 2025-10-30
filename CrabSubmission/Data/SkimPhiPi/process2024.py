@@ -81,7 +81,7 @@ config.Site.ignoreGlobalBlacklist  = True
 
 for portion in portions:
 
-    for i in range(1,8):
+    for i in range(0,8):
 
         args = {}
         args["version"] = versions[portion]

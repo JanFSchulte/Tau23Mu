@@ -1,6 +1,6 @@
 #!/bin/bash
 #location of "Analysis" folder
-cd /home/schul105/depot/Tau3Mu/analysis/2024/CMSSW_14_0_18/src/Analysis
+cd /home/schul105/depot/Tau3Mu/analysis/CMSSW_15_0_6_patch1/src/Analysis
 cmsenv
 #compile
 #g++ -I $ROOTSYS/include Analysis_chunk*.cpp `root-config --glibs` `root-config --libs` `root-config --cflags`  -L $ROOTSYS/lib -o executable*
